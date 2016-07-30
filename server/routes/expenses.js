@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 
 // send expenses
 router.post('/', (req, res) => {
-  res.send('send expenses');
+  res.send('post expenses');
 });
 
 module.exports = router;
