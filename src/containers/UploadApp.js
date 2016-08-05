@@ -7,7 +7,7 @@ UploadAppButton component.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import parse from 'csv-parse'
-import Papa from '../../papaparse-4.1.2'
+import Papa from '../../Papaparse-4.1.2'
 // import Papa from 'babyparse'
 import { uploadCSV, parsingCSV } from '../actions/expensesActions.js'
 const Dropzone = require('react-dropzone');
