@@ -14,6 +14,8 @@ let ExpenseList = ({expenses}) => {
       />
     )
 
+
+
     return (
       <div>
         <h3>TRANSACTIONS</h3>
@@ -22,6 +24,7 @@ let ExpenseList = ({expenses}) => {
             {expenseList}
           </tbody>
         </table>
+        <Upload/><br/>
       </div>
     )
 
