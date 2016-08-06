@@ -16,12 +16,11 @@ import Upload from './UploadApp'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
-import { fetchExpenses } from '../actions/expensesActions.js'
+import { fetchExpenses, computeTotal, getTotal } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    //function to handle submitting new category for expense
   }
 
   componentWillMount(){
@@ -55,16 +54,6 @@ function to calculate total from expenses array
 @param = expenses array from state
 @return = integer
 */
-function _getTotal(expensesArr){
-  let total = 0
-  if (expensesArr) {
-    for (var i = 0; i < expensesArr.length; i++) {
-      let expense = expensesArr[i]
-      total += expense.amount
-    }
-  }
-  return total
-}
 
 /*
 function that describes how to transform the current Redux store state into the
@@ -73,13 +62,11 @@ props you want to pass to a child presentational component you are wrapping
   @return = object of transformed store state
 */
 function mapStateToProps(state){
-  console.log('STATE: ', state);
-  const { expenses, isFetching } = state.expensesReducer
-  console.log('EXPENSES: ', expenses);
+  const { expenses, isFetching, total } = state.expensesReducer
   return {
     expenses: expenses,
     isFetching: isFetching,
-    total: _getTotal(expenses)
+    total: total
   }
 }
 

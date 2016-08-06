@@ -1,3 +1,4 @@
+<<<<<<< 8e7e5e9e8eb040c81b74cfc4627763c94379b9fc
 /*
 UploadApp App container (smart component) in charge of connecting React to the
 store/state and transforming the state in a way that can be used by the
@@ -22,7 +23,6 @@ export default class UploadApp extends Component {
   onDrop(files){
     var that = this;
     files.forEach((file) => {
-      console.log('here props', that.props)
       that.props.parsingCSV()
        parseCSV(file)
        .then(function(result) {
@@ -53,14 +53,15 @@ UploadApp.PropTypes = {
 
 function parseCSV(file) {
   return new Promise(function(resolve, reject) {
-    console.log('parsing file', file);
     Papa.parse(file.preview, {
       header: true,
       download: true,
       complete: function(results) {
         console.log('results from complete', results);
         if (results.data.length !== 0) {
+          //---------
           console.log('papa results', results.data)
+          //----------
           resolve(results.data);
         } else {
           reject('nothing was parsed!');
@@ -72,6 +73,7 @@ function parseCSV(file) {
 
 export default connect(
   (state) => {
+    console.log('UploadApp [state] is', state);
     const { expenses, isFetching } = state.expensesReducer
     return {
       expenses: expenses,
@@ -83,3 +85,42 @@ export default connect(
     parsingCSV: parsingCSV
   }
 )(UploadApp)
+=======
+// import React, { Component, PropTypes } from 'react'
+// import { connect } from 'react-redux'
+// import {fetchCSV,
+//   uploadRequest,
+//   uploadSuccess
+// } from '../actions/uploadActions.js'
+//
+// var Dropzone = require('react-dropzone');
+//
+// export default class UploadApp extends Component {
+//   onDrop(files){
+//       //  var req = request.post('/upload');
+//       // uploadRequest();
+//        files.forEach((file)=> {
+//          fetchCSV(file);
+//         //  uploadSuccess();
+//          console.log('file sent through onDrop', file);
+//         // req.attach(file.name, file);
+//        });
+//
+//       //  req.end(callback);
+//    }
+//
+// function mapStateToProps(state) {
+//   console.log('STATE from upload', state);
+//   const { expenses, isUploading } = state.uploadReducer
+//   console.log('EXPENSES from upload: ', expenses);
+//   return {
+//     expenses: expenses,
+//     isUploading: isUploading
+//   }
+// }
+//
+// export default connect(
+//   mapStateToProps,
+//   { fetchCSV: fetchCSV }
+// )(UploadApp)
+>>>>>>> all is good

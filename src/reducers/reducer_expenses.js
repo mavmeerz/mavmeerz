@@ -4,10 +4,11 @@ import {
   UPLOAD_REQUEST,
   UPLOAD_SUCCESS,
   UPLOAD_FAILURE,
-  PARSING_CSV
+  PARSING_CSV,
+  GET_TOTAL
 } from '../actions/expensesActions.js';
 
-const INITIAL_STATE = {expenses: [], isFetching: false}
+const INITIAL_STATE = {expenses: [], total: 0, isFetching: false}
 
 export default function expenses(state=INITIAL_STATE, action){
   switch (action.type) {
@@ -27,6 +28,7 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case UPLOAD_SUCCESS:
+    console.log('upload success in expenses reducer', state.expenses, action.expenses)
       return Object.assign({}, state, {
         isFetching: action.isFetching,
         expenses: state.expenses.concat(action.expenses)
@@ -35,8 +37,13 @@ export default function expenses(state=INITIAL_STATE, action){
     case PARSING_CSV:
       return Object.assign({}, state, {
         isFetching: action.isFetching,
-        //expenses: state.expenses.concat(action.expenses)
       })
+      break;
+    case GET_TOTAL:
+      return Object.assign({}, state, {
+        total: action.total
+      })
+      break;
     default:
       return state;
   }
