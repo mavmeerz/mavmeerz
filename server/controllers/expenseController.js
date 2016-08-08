@@ -24,13 +24,31 @@ exports.addAllExpenses = (expenseDataArr) => {
   });
 };
 
+/**
+  This function will take in a user id input and then return an array
+  of 'models' which will be an array of expense data objects for the
+  specific input user
+*/
+exports.getExpenses = (user) => {
+  return new Promise((resolve,reject) => {
+    new Expense().fetch({userId: user.id}).then((data) => {
+      resolve(data.models)
+    });
+  });
+  // return new Expense().query("where", "userId", "=", user.id).fetch();
+};
 
 /**
-  This function will take a callback which will work on an array of expense data objects.
-  data.models is an array where EACH element has an 'attributes' (i.e. data.models[0].attributes)
+  This function will return a Promise which will have access to data.models,
+  which is an array expense data objects
 */
 exports.getAllExpenses = () => {
-  return new Expense().fetchAll();
+  return new Promise((resolve,reject) => {
+    new Expense().fetchAll().then((data) => {
+      resolve(data.models)
+    });
+  });
+  // return new Expense().fetchAll();
 };
 
 exports.updateExpenseCategory = (expenseId, category, callback) => {

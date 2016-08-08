@@ -64,9 +64,9 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.string('category');
       table.float('amount',6,2);
       table.date('date')
-      // table.integer('categoryId').unsigned().references('id').inTable('categories');
-      // table.integer('statementId').unsigned().references('id').inTable('statements');
-      // table.integer('userId').unsigned().references('id').inTable('users');
+      table.integer('categoryId').unsigned().references('id').inTable('categories');
+      table.integer('statementId').unsigned().references('id').inTable('statements');
+      table.integer('userId').unsigned().references('id').inTable('users');
       table.timestamps();
       console.log(`Created expenses table`);
     });

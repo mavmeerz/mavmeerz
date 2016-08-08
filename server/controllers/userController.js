@@ -11,10 +11,15 @@ exports.addUser = (user) => {
   }).save();
 };
 
-exports.getUser = (user) => {
-  return new User().fetch({email: user})
-};
 
-exports.getAllUsers = (fileName,callback) => {
-  new File().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
+/**
+  This function will take an email for input and return a
+  'User' Bookshelf model 
+ */
+exports.getUser = (userEmail) => {
+  return new Promise((resolve,reject) => {
+    new User().fetch({email: userEmail}).then((user) => {
+      resolve(user)
+    })
+  });
 };

@@ -21,6 +21,7 @@
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.0",
     "csv": "^1.1.0",
+    "csv-parse": "^1.1.7",
     "es6-promise": "^3.2.1",
     "expect": "^1.20.2",
     "express": "^4.14.0",
