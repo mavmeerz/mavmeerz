@@ -1,22 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Highcharts from 'highcharts'
+import ExpensesApp from '../containers/ExpensesApp'
 
-export class DonutChart extends React.Component {
+export class Chart extends React.Component {
 	constructor(props) {
-    	super(props);
-        this.chart = undefined;
-    }
+    super(props);
+    this.chart = undefined;
+  }
 
   componentDidMount() {
-	this.chart = $(ReactDOM.findDOMNode(this.refs.chart)).highcharts({
+	  this.chart = $(ReactDOM.findDOMNode(this.refs.chart)).highcharts({
             chart: {
                 type: 'pie'
             },
-            title: 'Browser Market sahre',
+            title: 'Expenses per Category',
             yAxis: {
                 title: {
-                    text: 'Total percent market share'
+                    text: 'Total percent expenses per category'
                 }
             },
             plotOptions: {
@@ -30,7 +31,7 @@ export class DonutChart extends React.Component {
                 }
             },
             series: [{
-                name: 'Browsers',
+                category: 'Category',
                 data: this.props.data,
                 size: '100%',
                 innerSize: '85%',
@@ -43,15 +44,15 @@ export class DonutChart extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-  	this.chart.highcharts().series[0].setData(props.data);
+		this.chart.highcharts().series[0].setData(props.data);
   }
 
   render() {
-      return (
-        <div ref='chart'>
-        </div>
-      )
+    return (
+      <div ref='chart'>
+      </div>
+    );
   }
 }
 
-export default DonutChart
+export default Chart;

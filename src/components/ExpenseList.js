@@ -6,21 +6,20 @@ import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'
 
 class ExpenseList extends Component {
-  constructor(props){
-    super(props)
-
+  constructor(props) {
+    super(props);
   }
 
-  _categorize(category){
+  _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys
     console.log('Category from _categorize function: ', category);
     if (selected.length > 0) {
-      this.props.updateCategories(selected, category)
+      this.props.updateCategories(selected, category);
     }
   }
 
-  render(){
-    if (this.props.expenses.length>0) {
+  render() {
+    if (this.props.expenses.length > 0) {
       return (
         <div>
           <div className="transactions">
