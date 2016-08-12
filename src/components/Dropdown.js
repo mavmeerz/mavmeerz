@@ -14,7 +14,9 @@ const Dropdown = ({categorize, selectAccount}) => {
           <li class="current-menu-item"><a href="#">Add</a></li>
           <li class="current-menu-item"><a href="#">Delete</a></li>
           <li class="current-menu-item"><a href="#">Upload CSV</a></li>
-          <li class="current-menu-item" onClick={Datepicker}><a href="#">Filter By Date</a></li>
+          <li class="current-menu-item" onClick={Datepicker}><a href="#">Filter By Date</a>
+            <Datepicker />
+          </li>
           <li><a href="#">Categorize</a>
             <Categories
               categorize={categorize}
