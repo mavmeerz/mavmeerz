@@ -4,6 +4,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 class BudgetTable extends Component {
   constructor(props){
     super(props)
+    console.log('Category Totals: ', this.props);
   }
 
   _onCellEdit(row, cellName, cellValue){

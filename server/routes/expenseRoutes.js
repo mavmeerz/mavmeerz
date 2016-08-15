@@ -50,7 +50,6 @@ router.post('/', (req, res, next) => {
 // bulk update expenses
 router.put('/', (req, res) => {
   let userID = tokenUtil.getUserIDFromToken(req.body.token);
-  console.log('user ID: ', userID);
   // utility function to update category for an array of
   // expenses in expenses DB
   if (req.body.expenses) {

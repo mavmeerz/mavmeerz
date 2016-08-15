@@ -100,7 +100,7 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-  console.log('Expenses in mapStateToProps in ExpensesApp: ', expenses );
+  console.log('EXPENSES: ', expenses);
   return {
     expenses: expenses,
     isFetching: isFetching,

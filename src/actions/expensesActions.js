@@ -134,7 +134,6 @@ export function updateCategories(expenses, category){
       category: category
     })
     .then(expenses => {
-      console.log('EXPENSES/after category update', expenses.data);
       dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
