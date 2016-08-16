@@ -3,7 +3,6 @@ const User = require('../models/user.js');
 
 
 exports.addUser = (user) => {
-  console.log(user);
   return new User({
     email: user.email,
     password: user.password,

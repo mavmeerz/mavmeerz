@@ -6,6 +6,7 @@ const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
 // const categoryController = require('../controllers/categoryController.js');
 const subCategoryUtil      = require('./subCategoryUtil.js');
+const accountUtil          = require('./accountUtil.js');
 const         _            = require('lodash');
 
 
@@ -41,6 +42,9 @@ function getExpensesFromDB(user) {
       })
       .then((results) => {
         return subCategoryUtil.replaceSubCategoryIDWithName(results)
+      })
+      .then(expenses => {
+        return accountUtil.replaceAccountIDWithName(expenses);
       })
       .then((expenses) => {
         // sort expenses by ID
