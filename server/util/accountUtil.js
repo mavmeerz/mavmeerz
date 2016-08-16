@@ -10,6 +10,23 @@ function getAccountID(userId, account) {
   })
 }
 
+function replaceAccountIDWithName(expenses) {
+  return new Promise((resolve, reject) => {
+    let results = [];
+    let promises = [];
+
+    for (let i = 0; i < expenses.length; i++) {
+      promises.push(accountController.getAccountNameFromId(expenses[i].accountId)
+        .then((accountName) => {
+          expenses[i].account = accountName;
+          results.push(expenses[i]);
+        }));
+    }
+
+    Promise.all(promises).then(() => resolve(results));
+    });
+}
+
 function addAccountIfNotExists(userId, accountName)  {
   return new Promise((resolve, reject) => {
     accountExists(userId, accountName)
@@ -49,5 +66,6 @@ function accountExists(userId, account) {
 module.exports = {
   addAccountToDB: addAccountToDB,
   accountExists: accountExists,
-  getAccountID: getAccountID
+  getAccountID: getAccountID,
+  replaceAccountIDWithName: replaceAccountIDWithName
 };

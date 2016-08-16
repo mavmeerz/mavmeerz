@@ -53,7 +53,7 @@ class ExpenseList extends Component {
               <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
               <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
               <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
-              <TableHeaderColumn dataField='accountId' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
+              <TableHeaderColumn dataField='account' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
 
             </BootstrapTable>
           </div>

@@ -10,7 +10,7 @@ import parse from 'csv-parse'
 import Papa from '../../PapaParse-4.1.2'
 // import Papa from 'babyparse'
 import { uploadCSV, parsingCSV } from '../actions/expensesActions.js'
-const Dropzone = require('react-dropzone');
+import Dropzone from 'react-dropzone';
 
 export default class UploadApp extends Component {
 

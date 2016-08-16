@@ -23,7 +23,6 @@ router.post('/', (req, res, next) => {
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
   // fix when adding userID with tokens for account
   // let userID = req.body.userId;
-    console.log(req.headers);
     // check if account info was sent as well
     if (req.body.account) {
       // retrieve accountId (creating a new account if necessary)
