@@ -6,9 +6,6 @@ import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
-<<<<<<< b03e31c2ea902e1003ea04417914e4fff2cfcae7
-import { receiveExpenses } from '../actions/expensesActions'
-// import Dropzone from 'react-dropzone';
 import Upload from '../containers/UploadApp'
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
@@ -24,7 +21,7 @@ export class DropDownApp extends Component {
     this.hideDateModal   = this.hideDateModal.bind(this);
     this.showDropzone    = this.showDropzone.bind(this);
     this.hideDropzone    = this.hideDropzone.bind(this);
-    this.receiveExpenses = this.receiveExpenses.bind(this);
+    this.dodeezhit       = this.dodeezhit.bind(this);
   }
 
   showDateModal() {
@@ -44,20 +41,8 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: false});
   }
 
-  receiveExpenses() {
-    console.log('receiveExpenses');
-    this.props.receiveExpenses(this.props.allExpenses);
-
   dodeezhit() {
-    console.log('dodeeezhit');
-    // this.setState(
-    //   {
-    //     startDate: null,
-    //     endDate: null
-    //   }
-    // )
     this.props.setVisibilityFilter('SHOW_ALL', null, null)
-    // this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
   }
 
     render() {
@@ -96,9 +81,6 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-
-  // startDate = {this.props.startDate}
-  // endDate = {this.props.endDate}
   console.log('DatePicker mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
   console.log('DatePicker mapStateToProps startDate is: ', startDate);
@@ -114,10 +96,6 @@ export default connect(
   mapStateToProps,
 
   {
-    // updateDates: updateDates,
     setVisibilityFilter: setVisibilityFilter
   }
 )(DropDownApp)
-// export default DropDownApp
-
-// onClick={this.toggle}
