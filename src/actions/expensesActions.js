@@ -19,8 +19,9 @@ export function requestExpenses(){
 export function receiveExpenses(expenses){
   return {
     type: RECEIVE_EXPENSES,
-    isFetching: false,
-    expenses: expenses
+    expenses: expenses,
+    isFetching: false
+
   };
 }
 

@@ -15,6 +15,7 @@ import { connect } from 'react-redux'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Chart from '../components/Chart.js'
+import Spin from '../components/Spin'
 
 import '../css/expensesApp.css'
 
@@ -56,30 +57,37 @@ export default class ExpensesApp extends Component {
 
   render(){
     var expenses = this.props.expenses;
-    return (
-      <div className="expenseApp-container">
 
-        <div className="expense-list-container">
+    if (!expenses.length > 0) {
+      return (
+        <Spin/>
+      )
+    } else {
+      return (
+        <div className="expenseApp-container">
 
-          <ExpenseList
-            expenses={expenses}
-            updateCategories={this.props.updateCategories.bind(this)}
-            updateAccounts={this.props.updateAccounts.bind(this)}
-            total={this.props.total}
-          />
-        </div>
+          <div className="expense-list-container">
 
-        <div className="chart-container">
-          <Total
+            <ExpenseList
+              expenses={expenses}
+              updateCategories={this.props.updateCategories.bind(this)}
+              updateAccounts={this.props.updateAccounts.bind(this)}
               total={this.props.total}
-          />
-          <Chart
-            data={this.parseCategoriesForChart()}
-          />
-        </div>
+            />
+          </div>
 
-      </div>
-    )
+          <div className="chart-container">
+            <Total
+                total={this.props.total}
+            />
+            <Chart
+              data={this.parseCategoriesForChart()}
+            />
+          </div>
+
+        </div>
+      )
+    }
   }
 }
 
