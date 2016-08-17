@@ -50,10 +50,14 @@ export default class ExpensesApp extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   console.log('ExpensesApp componentWillReceiveProps: ', this.props.startDate)
-  //   this.props.startDate.setData(this.props.startDate);
-  // }
+  showAllExpenses(expenses) {
+    return expenses.filter((expense) => {
+      console.log('=====> expense.date in filter: ', expense.date);
+    if (endDate && startDate) {
+        return expense.date >= startDate && expense.date <= endDate
+      })
+    }
+  }
 
   parseCategoriesForChart() {
     let arrByCategory = _.reject(this.props.expenses, expense => {
