@@ -53,8 +53,8 @@ export default class ExpensesApp extends Component {
   showAllExpenses(expenses) {
     return expenses.filter((expense) => {
       console.log('=====> expense.date in filter: ', expense.date);
-    if (endDate && startDate) {
-        return expense.date >= startDate && expense.date <= endDate
+    if (dates.endDate && dates.startDate) {
+        return expense.date >= dates.startDate && expense.date <= dates.endDate
       })
     }
   }
@@ -86,6 +86,7 @@ export default class ExpensesApp extends Component {
 
   render(){
     var expenses = this.props.expenses;
+<<<<<<< e241c09b8ac278867799ec31657cbcd9aecda61e
     if (this.props.isFetching) {
       return (
         <Spin/>
@@ -95,13 +96,19 @@ export default class ExpensesApp extends Component {
         <div className="expenseApp-container">
           <div className="expense-list-container">
             <ExpenseList
+              dates={
+                {
+                  startDate:this.props.startDate,
+                  endDate: this.props.endDate
+                }
+              }
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
               total={this.props.total}
-            />
-          </div>
-
+              updateDates = {this.props.updateDates.bind(this)}
+              />
+            </div>
           <div className="chart-container">
             <Total
                 total={this.props.total}
