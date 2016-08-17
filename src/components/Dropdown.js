@@ -103,6 +103,7 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
+<<<<<<< 7d93f8bc4cc6c807ba6d3be5c765aa791cbe5db3
   console.log('Dropwndown mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
 
@@ -111,6 +112,31 @@ function mapStateToProps(state) {
     endDate: endDate,
   }
 }
+=======
+
+  // startDate = {this.props.startDate}
+  // endDate = {this.props.endDate}
+  console.log('DatePicker mapStateToProps state is: ', state);
+  const { startDate, endDate } = state.expensesReducer
+  console.log('DatePicker mapStateToProps startDate is: ', startDate);
+  console.log('DatePicker mapStateToProps endDate is: ', endDate);
+
+  return {
+    startDate: startDate,
+    endDate: endDate
+  }
+}
+
+export default connect(
+  mapStateToProps,
+
+  {
+    // updateDates: updateDates,
+    setVisibilityFilter: setVisibilityFilter
+  }
+)(DropDownApp)
+// export default DropDownApp
+>>>>>>> [feat] show all expenses works woot
 
 export default connect(
   mapStateToProps,
