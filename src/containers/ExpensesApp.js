@@ -93,10 +93,7 @@ export default class ExpensesApp extends Component {
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
-              total={this.props.total}
-              updateDates = {this.props.updateDates.bind(this)}
-            />
-        </div>
+              />
           <div className="chart-container">
             <Total
                 total={this.props.total}
@@ -105,7 +102,7 @@ export default class ExpensesApp extends Component {
               data={this.parseCategoriesForChart()}
             />
           </div>
-
+          </div>
         </div>
       )
     }

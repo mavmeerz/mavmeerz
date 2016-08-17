@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
 import ExpensesApp from '../containers/ExpensesApp'
-import { updateDates, setVisibilityFilter } from '../actions/expensesActions'
+import { setVisibilityFilter } from '../actions/expensesActions'
+// import { updateDates, setVisibilityFilter } from '../actions/expensesActions'
 
 class DatePicker extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class DatePicker extends Component {
 
     handleClick() {
       console.log('====> state in handleClick: ', this.state);
-      this.props.updateDates(this.state.endDate, this.state.startDate);
+      // this.props.updateDates(this.state.endDate, this.state.startDate);
       this.props.setVisibilityFilter('SHOW_FILTERED_DATE', this.state.endDate, this.state.startDate)
     }
 
@@ -58,8 +59,6 @@ class DatePicker extends Component {
 
 function mapStateToProps(state) {
 
-  // startDate = {this.props.startDate}
-  // endDate = {this.props.endDate}
   console.log('DatePicker mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
   console.log('DatePicker mapStateToProps startDate is: ', startDate);
@@ -75,7 +74,7 @@ export default connect(
   mapStateToProps,
 
   {
-    updateDates: updateDates,
+    // updateDates: updateDates,
     setVisibilityFilter: setVisibilityFilter
   }
 )(DatePicker)
