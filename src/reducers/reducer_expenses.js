@@ -12,7 +12,7 @@ import {
   GET_TOTAL,
   ADD_CATEGORY,
   ADD_ACCOUNT,
-  INITIAL_FETCH
+  INITIAL_FETCH,
   SHOW_ALL,
   SET_VISIBILITY_FILTER
 } from '../actions/expensesActions.js';
@@ -97,21 +97,6 @@ export default function expenses(state=INITIAL_STATE, action){
         });
       }
       return state;
-      break;
-    case SET_VISIBILITY_FILTER:
-      return Object.assign({}, state, {
-        visibilityFilter: action.visibilityFilter,
-        startDate: action.startDate,
-        endDate: action.endDate
-      });
-      break;
-    case SHOW_ALL:
-      // console.log('****> in reducer show_all', action.expenses, action.allExpenses)
-      return Object.assign({}, state, {
-        visibilityFilter: action.visibilityFilter,
-        startDate: null,
-        endDate: null
-      });
       break;
     case SET_VISIBILITY_FILTER:
       return Object.assign({}, state, {
