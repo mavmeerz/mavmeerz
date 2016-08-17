@@ -22,6 +22,10 @@ export function receiveExpenses(expenses){
     type: RECEIVE_EXPENSES,
     expenses: expenses,
     isFetching: false
+<<<<<<< 3394700d6e2f9197ae3083978adcce621a5d7fda
+=======
+
+>>>>>>> [feat] Spin feature that spins while expenses loads (fixes lag time when ExpenseList component renders)
   };
 }
 
