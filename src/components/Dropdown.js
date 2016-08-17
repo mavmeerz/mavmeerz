@@ -6,12 +6,6 @@ import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
-<<<<<<< 0f1eda63f1eb4a213107265495f3aafadb016c92
-=======
-<<<<<<< b03e31c2ea902e1003ea04417914e4fff2cfcae7
-import { receiveExpenses } from '../actions/expensesActions'
-// import Dropzone from 'react-dropzone';
->>>>>>> [feat] filter date is working but triggering twice and returning the same expenses twice
 import Upload from '../containers/UploadApp'
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
@@ -48,25 +42,8 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: false});
   }
 
-<<<<<<< 0f1eda63f1eb4a213107265495f3aafadb016c92
   showAllExpenses() {
     this.props.setVisibilityFilter('SHOW_ALL', null, null);
-=======
-  receiveExpenses() {
-    console.log('receiveExpenses');
-    this.props.receiveExpenses(this.props.allExpenses);
-
-  dodeezhit() {
-    console.log('dodeeezhit');
-    this.setState(
-      {
-        startDate: null,
-        endDate: null
-      }
-    )
-    // this.props.setVisibilityFilter('SHOW_ALL', null, null)
-    this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
->>>>>>> [feat] filter date is working but triggering twice and returning the same expenses twice
   }
 
     render() {
@@ -103,7 +80,6 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-<<<<<<< 7d93f8bc4cc6c807ba6d3be5c765aa791cbe5db3
   console.log('Dropwndown mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
 
@@ -112,31 +88,6 @@ function mapStateToProps(state) {
     endDate: endDate,
   }
 }
-=======
-
-  // startDate = {this.props.startDate}
-  // endDate = {this.props.endDate}
-  console.log('DatePicker mapStateToProps state is: ', state);
-  const { startDate, endDate } = state.expensesReducer
-  console.log('DatePicker mapStateToProps startDate is: ', startDate);
-  console.log('DatePicker mapStateToProps endDate is: ', endDate);
-
-  return {
-    startDate: startDate,
-    endDate: endDate
-  }
-}
-
-export default connect(
-  mapStateToProps,
-
-  {
-    // updateDates: updateDates,
-    setVisibilityFilter: setVisibilityFilter
-  }
-)(DropDownApp)
-// export default DropDownApp
->>>>>>> [feat] show all expenses works woot
 
 export default connect(
   mapStateToProps,
