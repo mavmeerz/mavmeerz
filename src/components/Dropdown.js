@@ -14,7 +14,11 @@ export class DropDownApp extends Component {
   constructor(props) {
     super(props);
 
+<<<<<<< 6598a7781b010a2e87fdf332cc42102aaa3861d9
     console.log('>>>>> Dropdown props are: ', props)
+=======
+    console.log('====> in Dropdown props are: ', props);
+>>>>>>> [feat] Add delete link bak
 
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
