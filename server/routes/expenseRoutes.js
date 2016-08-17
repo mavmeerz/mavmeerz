@@ -38,11 +38,11 @@ router.post('/', (req, res, next) => {
             .then(expenses => res.status(201).send(expenses))
             .catch(err => console.log('Error in getExpensesFromDB:', err));
           } else {
-            res.send('request body needs expenses!');
+            res.status(400).send('Request body needs Expenses.');
           }
         });
       } else {
-      res.send('request body needs account!');
+      res.status(400).send('Request body needs Account Name.');
     }
 });
 

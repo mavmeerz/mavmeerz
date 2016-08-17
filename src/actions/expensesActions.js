@@ -124,7 +124,6 @@ export function uploadCSV(account, csv){
       dispatch(uploadSuccess(res.data))
       dispatch(getTotal(computeTotal(res.data)))
     })
-    .catch(err => console.error(err))
   }
 }
 

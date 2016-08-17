@@ -25,7 +25,6 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case RECEIVE_EXPENSES:
-      console.log('tehrehehehe');
       return Object.assign({}, state, {
         isFetching: action.isFetching,
         expenses: action.expenses,
