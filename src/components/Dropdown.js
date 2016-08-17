@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import '../css/dropdown.css'
 import Categories from './DropdownCategory'
 import Accounts from './DropdownAccount'
@@ -94,6 +95,29 @@ export class DropDownApp extends Component {
     }
 }
 
-export default DropDownApp
+function mapStateToProps(state) {
+
+  // startDate = {this.props.startDate}
+  // endDate = {this.props.endDate}
+  console.log('DatePicker mapStateToProps state is: ', state);
+  const { startDate, endDate } = state.expensesReducer
+  console.log('DatePicker mapStateToProps startDate is: ', startDate);
+  console.log('DatePicker mapStateToProps endDate is: ', endDate);
+
+  return {
+    startDate: startDate,
+    endDate: endDate
+  }
+}
+
+export default connect(
+  mapStateToProps,
+
+  {
+    // updateDates: updateDates,
+    setVisibilityFilter: setVisibilityFilter
+  }
+)(DropDownApp)
+// export default DropDownApp
 
 // onClick={this.toggle}

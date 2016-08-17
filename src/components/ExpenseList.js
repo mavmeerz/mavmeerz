@@ -4,6 +4,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'
+import { setVisibilityFilter } from '../actions/expensesActions'
 
 class ExpenseList extends Component {
   constructor(props) {
