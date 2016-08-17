@@ -22,6 +22,7 @@ export function receiveExpenses(expenses){
     type: RECEIVE_EXPENSES,
     expenses: expenses,
     isFetching: false
+
   };
 }
 
