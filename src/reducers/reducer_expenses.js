@@ -105,10 +105,16 @@ export default function expenses(state=INITIAL_STATE, action){
         console.log('=====> endDate: ', endDate);
 
       return Object.assign({}, state, {
-        expenses: filteredExpenses
+        expenses: filteredExpenses,
+        startDate: startDate,
+        endDate: endDate
       });
       return state;
       break;
+    case SHOW_ALL:
+      return Object.assign({}, state, {
+        expenses: expenses
+      });
     default:
       return state;
   }
