@@ -21,9 +21,8 @@ export function receiveExpenses(expenses){
   console.log('trolololololol');
   return {
     type: RECEIVE_EXPENSES,
-    isFetching: false,
     expenses: expenses,
-    allExpenses: expenses
+    isFetching: false
   };
 }
 

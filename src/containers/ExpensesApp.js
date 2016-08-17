@@ -12,9 +12,10 @@ then passed down to all children presentational components.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import ExpenseList from '../components/ExpenseList'
-import Total from '../components/Total'
-import Chart from '../components/Chart'
+import ExpenseList from '../components/ExpenseList.js'
+import Total from '../components/Total.js'
+import Chart from '../components/Chart.js'
+import Spin from '../components/Spin'
 import DatePicker from '../components/DatePicker'
 
 import '../css/expensesApp.css'
@@ -72,35 +73,34 @@ export default class ExpensesApp extends Component {
 
   render(){
     var expenses = this.props.expenses;
-    var allExpenses = this.props.allExpenses;
-    console.log('ExpensesApp this.props', this.props);
-    return (
-      <div className="expenseApp-container">
-
-        <div className="expense-list-container">
-
-          <ExpenseList
-            expenses={expenses}
-            allExpenses={allExpenses}
-            receiveExpenses={receiveExpenses}
-            updateCategories={this.props.updateCategories.bind(this)}
-            updateAccounts={this.props.updateAccounts.bind(this)}
-            total={this.props.total}
-            updateDates = {this.props.updateDates.bind(this)}
-          />
-        </div>
-
-        <div className="chart-container">
-          <Total
+    if (!expenses.length > 0) {
+      return (
+        <Spin/>
+      )
+    } else {
+      return (
+        <div className="expenseApp-container">
+          <div className="expense-list-container">
+            <ExpenseList
+              expenses={expenses}
+              updateCategories={this.props.updateCategories.bind(this)}
+              updateAccounts={this.props.updateAccounts.bind(this)}
               total={this.props.total}
-          />
-          <Chart
-            data={this.parseCategoriesForChart()}
-          />
-        </div>
+            />
+          </div>
 
-      </div>
-    )
+          <div className="chart-container">
+            <Total
+                total={this.props.total}
+            />
+            <Chart
+              data={this.parseCategoriesForChart()}
+            />
+          </div>
+
+        </div>
+      )
+    }
   }
 }
 
