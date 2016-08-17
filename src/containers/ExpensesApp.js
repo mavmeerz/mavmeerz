@@ -73,7 +73,7 @@ export default class ExpensesApp extends Component {
 
   render(){
     var expenses = this.props.expenses;
-    if (!expenses.length > 0) {
+    if (this.props.isFetching) {
       return (
         <Spin/>
       )
