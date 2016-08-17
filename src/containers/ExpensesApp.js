@@ -50,13 +50,13 @@ export default class ExpensesApp extends Component {
     }
   }
 
-  showAllExpenses(expenses) {
+  showFilteredExpenses(expenses) {
+    console.log('=====> expense.date in filter: ', expense.date);
     return expenses.filter((expense) => {
-      console.log('=====> expense.date in filter: ', expense.date);
-    if (dates.endDate && dates.startDate) {
-        return expense.date >= dates.startDate && expense.date <= dates.endDate
+      if (dates.endDate && dates.startDate) {
+          return expense.date >= dates.startDate && expense.date <= dates.endDate
+        }
       })
-    }
   }
 
   parseCategoriesForChart() {
@@ -107,8 +107,8 @@ export default class ExpensesApp extends Component {
               updateAccounts={this.props.updateAccounts.bind(this)}
               total={this.props.total}
               updateDates = {this.props.updateDates.bind(this)}
-              />
-            </div>
+            />
+          </div>
           <div className="chart-container">
             <Total
                 total={this.props.total}

@@ -9,7 +9,12 @@ export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const FILTER_DATE = 'FILTER_DATE';
+<<<<<<< 14542806574290ac4c8621a8f19bdd635b6b1613
 export const INITIAL_FETCH = 'INITIAL_FETCH'
+=======
+// export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const SHOW_ALL = 'SHOW_ALL';
+>>>>>>> [refactor] refactoring filter function into a smart component
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 export function toggleFetched(){
@@ -99,6 +104,20 @@ export function filterDate(endDate, startDate) {
     startDate: startDate
   };
 }
+
+// export const setVisibilityFilter = (filter) => {
+//   return {
+//     type: SET_VISIBILITY_FILTER,
+//     filter: filter
+//   }
+// }
+
+export const showAllExpenses = (expenses) => {
+    type: SHOW_ALL,
+    expenses: expenses
+}
+
+
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
