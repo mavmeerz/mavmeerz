@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
-import { updateDates } from '../actions/expensesActions'
+import ExpensesApp from '../containers/ExpensesApp'
+import { updateDates, setVisibilityFilter } from '../actions/expensesActions'
 
 class DatePicker extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class DatePicker extends Component {
     handleClick() {
       console.log('====> state in handleClick: ', this.state);
       this.props.updateDates(this.state.endDate, this.state.startDate);
+      this.props.setVisibilityFilter('SHOW_FILTERED_DATE', this.state.endDate, this.state.startDate)
     }
 
     render(){
@@ -46,7 +48,7 @@ class DatePicker extends Component {
                  />
                   <button id="apply-dates" onClick={this.handleClick} >
                     <i className="fa fa-check-circle"></i>
-                    Apply Dates
+                    OK
                   </button>
 
             </div>
@@ -73,7 +75,8 @@ export default connect(
   mapStateToProps,
 
   {
-    updateDates: updateDates
+    updateDates: updateDates,
+    setVisibilityFilter: setVisibilityFilter
   }
 )(DatePicker)
 

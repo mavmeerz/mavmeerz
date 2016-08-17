@@ -5,9 +5,13 @@ import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
+<<<<<<< b03e31c2ea902e1003ea04417914e4fff2cfcae7
 import { receiveExpenses } from '../actions/expensesActions'
 // import Dropzone from 'react-dropzone';
 import Upload from '../containers/UploadApp'
+import ExpensesApp from '../containers/ExpensesApp'
+import { setVisibilityFilter } from '../actions/expensesActions'
+
 export class DropDownApp extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +38,7 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: true});
   }
 
+
   hideDropzone() {
     this.setState({showDropzone: false});
   }
@@ -41,6 +46,17 @@ export class DropDownApp extends Component {
   receiveExpenses() {
     console.log('receiveExpenses');
     this.props.receiveExpenses(this.props.allExpenses);
+
+  dodeezhit() {
+    console.log('dodeeezhit');
+    this.setState(
+      {
+        startDate: null,
+        endDate: null
+      }
+    )
+    // this.props.setVisibilityFilter('SHOW_ALL', null, null)
+    this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
   }
 
     render() {

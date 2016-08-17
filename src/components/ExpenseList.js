@@ -61,8 +61,7 @@ class ExpenseList extends Component {
             <Dropdown
                 categorize={this._categorize.bind(this)}
                 selectAccount={this._selectAccount.bind(this)}
-                receiveExpenses={this.props.receiveExpenses}
-                allExpenses={this.props.allExpenses}
+                setVisibilityFilter={this.props.setVisibilityFilter}
             />
 
             <BootstrapTable
@@ -98,3 +97,5 @@ class ExpenseList extends Component {
 }
 
 export default ExpenseList;
+// receiveExpenses={this.props.receiveExpenses}
+// allExpenses={this.props.allExpenses}
