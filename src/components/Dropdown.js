@@ -14,11 +14,11 @@ export class DropDownApp extends Component {
 
     console.log('====> in Dropdown props are: ', props);
     this.state = {showDatePicker: false, showDropzone: false};
-    this.showDateModal = this.showDateModal.bind(this);
-    this.hideDateModal = this.hideDateModal.bind(this);
-    this.showDropzone  = this.showDropzone.bind(this);
-    this.hideDropzone  = this.hideDropzone.bind(this);
-    this.dodeezhit     = this.dodeezhit.bind(this);
+    this.showDateModal   = this.showDateModal.bind(this);
+    this.hideDateModal   = this.hideDateModal.bind(this);
+    this.showDropzone    = this.showDropzone.bind(this);
+    this.hideDropzone    = this.hideDropzone.bind(this);
+    this.receiveExpenses = this.receiveExpenses.bind(this);
   }
 
   showDateModal() {

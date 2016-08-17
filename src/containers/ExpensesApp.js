@@ -54,14 +54,18 @@ export default class ExpensesApp extends Component {
     let dataSum = 0;
     let arrByCategory = this.props.expenses.filter(filterByCategory);
     let reduced = arrByCategory.reduce((p,c) => {
-      p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
-      dataSum += c.amount;
+      if (c.category != 'Other') {
+        p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
+        dataSum += c.amount;
+      }
       return p;
     }, {});
 
     let result = [];
     for (let key in reduced) {
-      result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
+      if (key != 'Other') {
+        result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
+      }
     };
     return result;
   }
