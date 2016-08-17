@@ -94,26 +94,26 @@ function addAccount(expenses, account) {
 
 //VISIBILITY FILTER ACTION CREATORS
 export const setVisibilityFilter = (visibilityFilter, endDate, startDate) => {
->>>>>>> [fix] fix bug that caused code not to work during merge conflict
   return {
-    type: FILTER_DATE,
+    type: SET_VISIBILITY_FILTER,
+    visibilityFilter: visibilityFilter,
     endDate: endDate,
     startDate: startDate
-  };
+  }
 }
 
 export const showAllExpenses = () => {
   return {
-    type: SHOW_ALL,
+    type: SHOW_ALL
   }
 }
 
 export const showFilteredExpenses = () => {
   return {
-    type: SHOW_FILTERED_DATE,
+    type: SHOW_FILTERED_DATE
   }
 }
-//---------------------------------
+//--------------------------------------
 
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
