@@ -46,7 +46,6 @@ function getVisibleBudgetItems(budgetItems){
     return item.currAmount !== 0
   })
 }
-
 function computeGoalTotal(budgetItems){
   let total = 0
   budgetItems.forEach(item => total += item.goalAmount)
