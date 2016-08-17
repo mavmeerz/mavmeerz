@@ -7,14 +7,26 @@ export default class BudgetTable extends Component {
   }
 
   _onCellEdit(row, cellName, cellValue){
-    this.props.updateBudgetItems(this.props.budgetItems)
+    var essential;
+    row.essential === 'LUXURY' ? essential = 0 : essential = 1;
+
+    var goalUpdates = [
+      {
+        subCat: row.category,
+        amount: +cellValue,
+        essential: essential
+      }
+    ]
+
+    console.log('GOAL UPDATES: ', goalUpdates);
+    this.props.updateBudget(goalUpdates)
   }
 
   render(){
     return (
       <div>
         <BootstrapTable
-              data={ getVisibleBudgetItems(this.props.budgetItems) }
+              data={ this.props.budgetItems }
               striped={ true }
               hover={ true }
               ref='table'
@@ -30,11 +42,4 @@ export default class BudgetTable extends Component {
       </div>
     )
   }
-}
-
-function getVisibleBudgetItems(budgetItems){
-  return budgetItems.filter(item => {
-    item.essential === 0 ? item.essential = 'LUXURY' : item.essential = 'ESSENTIAL';
-    return item.currAmount !== 0
-  })
 }

@@ -8,21 +8,13 @@ export const UPDATE_BUDGET = 'UPDATE_BUDGET'
 
 function requestBudgetItems(){
   return {
-    type: REQUEST_BUDGET,
-    fetchingBudget: true
+    type: REQUEST_BUDGET
   }
 }
 function receiveBudgetItems(budgetItems){
   return {
     type: RECEIVE_BUDGET,
-    fetchingBudget: false,
     budgetItems
-  }
-}
-function receiveUpdatedBudgetItems(updatedBudgetItems){
-  return {
-    type: UPDATE_BUDGET,
-    updatedBudgetItems
   }
 }
 
@@ -53,8 +45,7 @@ export function updateBudgetItems(budgetItems){
     })
     //dispatch response from server to reducer
     .then(res => {
-      console.log('RESPONSE: ', res.data);
-      dispatch(receiveUpdatedBudgetItems(res.data))
+      dispatch(receiveBudgetItems(res.data))
     })
     .catch(err => console.error(err))
   }
