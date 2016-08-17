@@ -36,6 +36,7 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
+
   }
 
   componentWillMount(){
@@ -93,6 +94,7 @@ export default class ExpensesApp extends Component {
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
             />
+        </div>
           <div className="chart-container">
             <Total
                 total={this.props.total}

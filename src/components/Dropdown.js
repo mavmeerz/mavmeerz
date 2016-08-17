@@ -6,6 +6,12 @@ import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
+<<<<<<< 0f1eda63f1eb4a213107265495f3aafadb016c92
+=======
+<<<<<<< b03e31c2ea902e1003ea04417914e4fff2cfcae7
+import { receiveExpenses } from '../actions/expensesActions'
+// import Dropzone from 'react-dropzone';
+>>>>>>> [feat] filter date is working but triggering twice and returning the same expenses twice
 import Upload from '../containers/UploadApp'
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
@@ -42,8 +48,25 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: false});
   }
 
+<<<<<<< 0f1eda63f1eb4a213107265495f3aafadb016c92
   showAllExpenses() {
     this.props.setVisibilityFilter('SHOW_ALL', null, null);
+=======
+  receiveExpenses() {
+    console.log('receiveExpenses');
+    this.props.receiveExpenses(this.props.allExpenses);
+
+  dodeezhit() {
+    console.log('dodeeezhit');
+    this.setState(
+      {
+        startDate: null,
+        endDate: null
+      }
+    )
+    // this.props.setVisibilityFilter('SHOW_ALL', null, null)
+    this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
+>>>>>>> [feat] filter date is working but triggering twice and returning the same expenses twice
   }
 
     render() {
