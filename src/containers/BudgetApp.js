@@ -58,6 +58,12 @@ function computeGoalTotal(budgetItems){
   return total
 }
 
+function computeGoalTotal(budgetItems){
+  let total = 0
+  budgetItems.forEach(item => total += item.goalAmount)
+  return total
+}
+
 function mapStateToProps(state){
   const { total } = state.expensesReducer
   const { budgetItems, fetchingBudget } = state.budget
