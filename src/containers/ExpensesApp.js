@@ -93,7 +93,7 @@ export default class ExpensesApp extends Component {
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
-              />
+            />
           <div className="chart-container">
             <Total
                 total={this.props.total}
@@ -104,6 +104,7 @@ export default class ExpensesApp extends Component {
           </div>
           </div>
         </div>
+      </div>
       )
     }
   }
@@ -113,7 +114,7 @@ ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
-  fetchExpenses: PropTypes.func.isRequired,
+  fetchExpenses: PropTypes.func.isRequired
   // allExpenses: PropTypes.array.isRequired,
 }
 
