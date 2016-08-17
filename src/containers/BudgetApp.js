@@ -47,14 +47,20 @@ function getVisibleBudgetItems(budgetItems){
   })
 }
 
+function computeGoalTotal(budgetItems){
+  let total = 0
+  budgetItems.forEach(item => total += item.goalAmount)
+  return total
+}
+
 function mapStateToProps(state){
   const { total } = state.expensesReducer
-  const { budgetItems, fetchingBudget, goalTotal } = state.budget
+  const { budgetItems, fetchingBudget } = state.budget
   return {
     total: total,
     budgetItems: getVisibleBudgetItems(budgetItems),
     fetchingBudget: fetchingBudget,
-    goalTotal: goalTotal
+    goalTotal: computeGoalTotal(budgetItems)
   }
 }
 
