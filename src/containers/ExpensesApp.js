@@ -12,33 +12,31 @@ then passed down to all children presentational components.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as _ from 'lodash';
-
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Chart from '../components/Chart.js'
 import Spin from '../components/Spin'
 import DatePicker from '../components/DatePicker'
-
 import '../css/expensesApp.css'
 
 import {
   fetchExpenses,
   updateCategories,
   updateAccounts,
-  updateDates,
-  receiveExpenses,
-  toggleFetched
+  toggleFetched,
+  setVisibilityFilter
 } from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('this.props in constructor in ExpensesApp', this.props);
-    console.log('this.state in constructor in ExpensesApp', this.state);
+    console.log('::::::> ExpensesApp this.props', this.props);
+    console.log('::::::> ExpensesApp this.state', this.state);
 
     this.state = {
       total: 0,
     }
+
   }
 
   componentWillMount(){
@@ -48,15 +46,6 @@ export default class ExpensesApp extends Component {
       this.props.fetchExpenses()
       this.props.toggleFetched()
     }
-  }
-
-  showFilteredExpenses(expenses) {
-    console.log('=====> expense.date in filter: ', expense.date);
-    return expenses.filter((expense) => {
-      if (dates.endDate && dates.startDate) {
-          return expense.date >= dates.startDate && expense.date <= dates.endDate
-        }
-      })
   }
 
   parseCategoriesForChart() {
@@ -107,7 +96,7 @@ export default class ExpensesApp extends Component {
               total={this.props.total}
               updateDates = {this.props.updateDates.bind(this)}
             />
-          </div>
+        </div>
           <div className="chart-container">
             <Total
                 total={this.props.total}
@@ -128,8 +117,25 @@ ExpensesApp.PropTypes = {
   expenses: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   fetchExpenses: PropTypes.func.isRequired,
-  allExpenses: PropTypes.array.isRequired,
-  receiveExpenses: PropTypes.func.isRequired
+  // allExpenses: PropTypes.array.isRequired,
+}
+
+function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
+  console.log('=====> expenses in filter: ', expenses)
+  console.log('******> getVisibleExpenses startDate is: ', startDate);
+
+  switch (visibilityFilter) {
+    case 'SHOW_ALL':
+      return expenses
+    case 'SHOW_FILTERED_DATE':
+      return expenses.filter((expense) => {
+        console.log('+++> expense.date: ', expense.date)
+        console.log('******> getVisibleExpenses startDate is: ', startDate);
+        if (endDate && startDate) {
+          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
+        }
+      })
+  }
 }
 
 /*
@@ -145,12 +151,12 @@ function mapStateToProps(state){
     total,
     startDate,
     endDate,
-    initialFetchOccurred
+    initialFetchOccurred,
+    visibilityFilter
   } = state.expensesReducer
-  console.log('Expenses in mapStateToProps in ExpensesApp: ', expenses );
 
   return {
-    expenses: expenses,
+    expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
     isFetching: isFetching,
     total: total,
     startDate: startDate,
@@ -166,8 +172,7 @@ export default connect(
     fetchExpenses: fetchExpenses,
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
-    updateDates: updateDates,
-    receiveExpenses: receiveExpenses,
     toggleFetched: toggleFetched
+    setVisibilityFilter: setVisibilityFilter
   }
 )(ExpensesApp)
