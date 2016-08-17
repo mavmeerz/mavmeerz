@@ -19,7 +19,7 @@ export class DropDownApp extends Component {
     this.hideDateModal   = this.hideDateModal.bind(this);
     this.showDropzone    = this.showDropzone.bind(this);
     this.hideDropzone    = this.hideDropzone.bind(this);
-    this.receiveExpenses = this.receiveExpenses.bind(this);
+    this.showAllExpenses = this.showAllExpenses.bind(this);
   }
 
   showDateModal() {
@@ -39,8 +39,8 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: false});
   }
 
-  receiveExpenses() {
-    this.props.setVisibilityFilter('SHOW_ALL', null, null)
+  showAllExpenses() {
+    this.props.setVisibilityFilter('SHOW_ALL', null, null);
   }
 
     render() {
@@ -51,7 +51,7 @@ export class DropDownApp extends Component {
               <li class="current-menu-item"><a href="#">Add</a></li>
               <li class="current-menu-item"><a href="#">Delete</a></li>
               <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.receiveExpenses}>Show All Expenses</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
               <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
               <li><a href="#">Categorize</a>
                 <Categories
