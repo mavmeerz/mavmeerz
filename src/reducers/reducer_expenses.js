@@ -100,20 +100,13 @@ export default function expenses(state=INITIAL_STATE, action){
       let startDate = action.startDate.slice(0, 10);
       let endDate = action.endDate.slice(0, 10);
 
-      if (endDate >= startDate) {
         console.log('=======> state.expenses: ', state.expenses);
         console.log('=====> startDate: ', startDate);
         console.log('=====> endDate: ', endDate);
-        var filteredExpenses = state.expenses.filter((expense) => {
-          // console.log('=====> expense.date in filter: ', expense.date);
 
-          return expense.date >= startDate && expense.date <= endDate
-        })
-        console.log('Filter_date filtered expenses are: ', filteredExpenses)
-        return Object.assign({}, state, {
-          expenses: filteredExpenses,
-        });
-      }
+      return Object.assign({}, state, {
+        expenses: filteredExpenses
+      });
       return state;
       break;
     default:

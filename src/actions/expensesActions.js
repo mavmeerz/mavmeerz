@@ -92,7 +92,7 @@ function addAccount(expenses, account) {
 export function filterDate(endDate, startDate) {
   console.log('filterDate endDate: ', endDate)
   console.log('filterDate startDate: ', startDate)
-  debugger;
+
   return {
     type: FILTER_DATE,
     endDate: endDate,
@@ -157,8 +157,6 @@ export function updateAccounts(expenses, account) {
 export function updateDates(endDate, startDate) {
   console.log('updateDates endDate:', endDate)
   console.log('updateDates startDate: ', startDate)
-  // return dispatch => {
-  //   dispatch(filterDate(endDate, startDate))
-  // }
+
   return filterDate(endDate, startDate)
 }
