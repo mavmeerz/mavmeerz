@@ -13,6 +13,8 @@ import {
   ADD_CATEGORY,
   ADD_ACCOUNT,
   INITIAL_FETCH
+  SHOW_ALL,
+  SET_VISIBILITY_FILTER
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {
@@ -43,7 +45,7 @@ export default function expenses(state=INITIAL_STATE, action){
       return Object.assign({}, state, {
         isFetching: action.isFetching,
         expenses: action.expenses,
-        allExpenses: action.expenses
+        // allExpenses: action.expenses
       })
     case UPLOAD_REQUEST:
       return Object.assign({}, state, {
@@ -96,26 +98,26 @@ export default function expenses(state=INITIAL_STATE, action){
       }
       return state;
       break;
-    case FILTER_DATE:
-      let startDate = action.startDate.slice(0, 10);
-      let endDate = action.endDate.slice(0, 10);
-        // console.log('=======> state.expenses: ', state.expenses);
-        console.log('=====> startDate: ', startDate);
-        console.log('=====> endDate: ', endDate);
-
-      return Object.assign({}, state, {
-        startDate: startDate,
-        endDate: endDate
-      });
-      break;
-    case SHOW_ALL:
-      // console.log('****> in reducer show_all', action.expenses, action.allExpenses)
-      return Object.assign({}, state, {
-        visibilityFilter: action.visibilityFilter,
-        startDate: null,
-        endDate: null
-      });
-      break;
+    // case FILTER_DATE:
+    //   let startDate = action.startDate.slice(0, 10);
+    //   let endDate = action.endDate.slice(0, 10);
+    //     // console.log('=======> state.expenses: ', state.expenses);
+    //     console.log('=====> startDate: ', startDate);
+    //     console.log('=====> endDate: ', endDate);
+    //
+    //   return Object.assign({}, state, {
+    //     startDate: startDate,
+    //     endDate: endDate
+    //   });
+    //   break;
+    // case SHOW_ALL:
+    //   console.log('****> in reducer show_all', action.expenses, action.allExpenses)
+    //   return Object.assign({}, state, {
+    //     visibilityFilter: action.visibilityFilter,
+    //     startDate: null,
+    //     endDate: null
+    //   });
+    //   break;
     case SET_VISIBILITY_FILTER:
       return Object.assign({}, state, {
         visibilityFilter: action.visibilityFilter,

@@ -9,6 +9,7 @@ export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const INITIAL_FETCH = 'INITIAL_FETCH'
+export const SHOW_FILTERED_DATE = 'SHOW_FILTERED_DATE';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const SHOW_ALL = 'SHOW_ALL';
 
@@ -91,6 +92,7 @@ function addAccount(expenses, account) {
 }
 
 //FILTER DATE ACTION CREATOR
+<<<<<<< a33390ad8a9c03d5423ae740a406d501ddca1af9
 export function filterDate(endDate, startDate) {
   console.log('filterDate endDate: ', endDate)
   console.log('filterDate startDate: ', startDate)
@@ -109,9 +111,24 @@ export function filterDate(endDate, startDate) {
 //   }
 // }
 
-export const showAllExpenses = (expenses) => {
+// export const showAllExpenses = (visibilityFilter, endDate, startDate) => {
+export const showAllExpenses = () => {
+  return {
     type: SHOW_ALL,
-    expenses: expenses
+    // visibilityFilter: visibilityFilter,
+    // endDate: endDate,
+    // startDate: startDate
+  }
+}
+
+// export const showFilteredExpenses = (visibilityFilter, startDate, endDate) => {
+export const showFilteredExpenses = () => {
+  return {
+    type: SHOW_FILTERED_DATE,
+    // visibilityFilter: visibilityFilter,
+    // endDate: endDate,
+    // startDate: startDate
+  }
 }
 
 
@@ -170,9 +187,9 @@ export function updateAccounts(expenses, account) {
   };
 }
 
-export function updateDates(endDate, startDate) {
-  console.log('updateDates endDate:', endDate)
-  console.log('updateDates startDate: ', startDate)
-
-  return filterDate(endDate, startDate)
-}
+// export function updateDates(endDate, startDate) {
+//   console.log('updateDates endDate:', endDate)
+//   console.log('updateDates startDate: ', startDate)
+//
+//   return filterDate(endDate, startDate)
+// }

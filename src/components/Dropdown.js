@@ -50,14 +50,14 @@ export class DropDownApp extends Component {
 
   dodeezhit() {
     console.log('dodeeezhit');
-    this.setState(
-      {
-        startDate: null,
-        endDate: null
-      }
-    )
-    // this.props.setVisibilityFilter('SHOW_ALL', null, null)
-    this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
+    // this.setState(
+    //   {
+    //     startDate: null,
+    //     endDate: null
+    //   }
+    // )
+    this.props.setVisibilityFilter('SHOW_ALL', null, null)
+    // this.props.setVisibilityFilter('SHOW_ALL', this.state.endDate, this.state.endDate)
   }
 
     render() {
