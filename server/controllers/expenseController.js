@@ -67,11 +67,14 @@ exports.getAllExpenses = () => {
       resolve(data.models)
     });
   });
-  // return new Expense().fetchAll();
 };
 
 exports.updateExpenseCategory = (expenseId, category) => {
-  subCategoryController.getSubCategoryId(category).then((categoryId) => {
-    return new Expense({id: expenseId}).save({categoryId: categoryId});
+  return new Promise((resolve, reject) => {
+    subCategoryController.getSubCategoryId(category).then((categoryId) => {
+      new Expense({id: expenseId}).fetch()
+        .then(expense => expense.set({categoryId: categoryId}).save())
+        .then(expense => resolve(expense));
+    });
   });
 }

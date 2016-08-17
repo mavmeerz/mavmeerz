@@ -35,21 +35,13 @@ function getExpensesFromDB(user) {
     let results = [];
     expenseController.getExpenses(user)
       .then((expenses) => {
-        expenses.forEach((expense) => {
-          results.push(expense.attributes);
-        });
+        expenses.forEach(expense => results.push(expense.attributes));
         return results;
       })
-      .then((results) => {
-        return subCategoryUtil.replaceSubCategoryIDWithName(results)
-      })
-      .then(expenses => {
-        return accountUtil.replaceAccountIDWithName(expenses);
-      })
-      .then((expenses) => {
-        // sort expenses by ID
-        resolve(_.sortBy(expenses, expense => expense.id));
-      });
+      .then(results => subCategoryUtil.replaceSubCategoryIDWithName(results))
+      .then(expenses => accountUtil.replaceAccountIDWithName(expenses))
+      //sort expenses by ID
+      .then(expenses => resolve(_.sortBy(expenses, expense => expense.id)));
   });
 }
 
@@ -57,9 +49,6 @@ function getExpensesFromDB(user) {
 // updates the database entry with the category,
 // and sends it into a callback if successful
 function updateExpenseCategoryinDB(expenseId, category) {
-  // expenseController.updateExpenseCategory(expenseId, category, (success) => {
-  //   if (success) callback(success);
-  // });
   return new Promise((resolve, reject) => {
     expenseController.updateExpenseCategory(expenseId, category)
       .then(success => resolve(success));
@@ -69,11 +58,13 @@ function updateExpenseCategoryinDB(expenseId, category) {
 
 function bulkUpdateExpenseCategoriesinDB(expenses, category) {
   return new Promise((resolve, reject) => {
-    expenses.forEach((id) => {
-      expenseController.updateExpenseCategory(id, category);
+    let promises = [];
+    expenses.forEach(id => {
+      promises.push(expenseController.updateExpenseCategory(id, category));
     });
-    resolve('success');
-  });
+    Promise.all(promises).then(() => resolve('success'));
+  })
+
 }
 
 

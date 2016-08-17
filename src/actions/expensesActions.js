@@ -18,7 +18,6 @@ export function requestExpenses(){
   };
 }
 export function receiveExpenses(expenses){
-  console.log('trolololololol');
   return {
     type: RECEIVE_EXPENSES,
     expenses: expenses,
