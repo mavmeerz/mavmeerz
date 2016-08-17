@@ -105,6 +105,10 @@ export default function expenses(state=INITIAL_STATE, action){
         endDate: action.endDate
       });
       break;
+    case SHOW_ALL:
+      return Object.assign({}, state, {
+        expenses: expenses
+      });
     default:
       return state;
   }
