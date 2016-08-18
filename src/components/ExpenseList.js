@@ -23,7 +23,8 @@ class ExpenseList extends Component {
   _selectAccount(account) {
     const selected = this.refs.table.state.selectedRowKeys;
     if (selected.length > 0) {
-      this.props.updateAccounts(selected, account);
+      this.props.updateAccounts(selected, account)
+        .then(() => this.refs.table.cleanSelected());
     }
   }
 
