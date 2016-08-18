@@ -35,7 +35,8 @@ export default class ExpensesApp extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchExpenses()
+    var fetch = memoize(this.props.fetchExpenses)
+    fetch()
     // this.props.receiveExpenses()
   }
 

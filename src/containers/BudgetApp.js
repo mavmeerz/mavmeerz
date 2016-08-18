@@ -12,6 +12,7 @@ export default class BudgetApp extends Component {
   }
 
   componentWillMount(){
+    
     this.props.fetchBudgetItems()
   }
 
