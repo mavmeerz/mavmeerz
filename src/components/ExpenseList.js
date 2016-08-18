@@ -4,17 +4,16 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'
+import { setVisibilityFilter } from '../actions/expensesActions'
 
 class ExpenseList extends Component {
   constructor(props) {
     super(props);
 
-  console.log('ExpenseList props are: ', props);
   }
 
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
-    console.log('Category from _categorize function: ', category);
     if (selected.length > 0) {
       this.props.updateCategories(selected, category);
     }
@@ -61,8 +60,7 @@ class ExpenseList extends Component {
             <Dropdown
                 categorize={this._categorize.bind(this)}
                 selectAccount={this._selectAccount.bind(this)}
-                receiveExpenses={this.props.receiveExpenses}
-                allExpenses={this.props.allExpenses}
+                setVisibilityFilter={this.props.setVisibilityFilter}
             />
 
             <BootstrapTable
