@@ -14,6 +14,8 @@ export class DropDownApp extends Component {
   constructor(props) {
     super(props);
 
+    console.log('>>>>> Dropdown props are: ', props)
+
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
     this.hideDateModal   = this.hideDateModal.bind(this);
@@ -28,6 +30,7 @@ export class DropDownApp extends Component {
 
   hideDateModal() {
     this.setState({showDatePicker: false});
+
   }
 
   showDropzone() {
@@ -66,7 +69,7 @@ export class DropDownApp extends Component {
             </ul>
           </nav>
           <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
-            <DatePicker/>
+            <DatePicker hideModal = {this.hideDateModal}/>
           </Modal>
           <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
             <Upload />
@@ -77,12 +80,12 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('DatePicker mapStateToProps state is: ', state);
+  console.log('Dropwndown mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
 
   return {
     startDate: startDate,
-    endDate: endDate
+    endDate: endDate,
   }
 }
 

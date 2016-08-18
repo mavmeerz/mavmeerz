@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
+import Dropdown from './Dropdown'
 import moment from 'moment';
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
@@ -9,6 +10,8 @@ class DatePicker extends Component {
   constructor(props) {
     super(props)
 
+    console.log('****> Datepicker props are: ', props)
+    // console.log('****> Datepicker state are: ', state)
     this.state = {
       startDate: null,
       endDate: null
@@ -30,6 +33,7 @@ class DatePicker extends Component {
 
   handleClick() {
     this.props.setVisibilityFilter('SHOW_FILTERED_DATE', this.state.endDate, this.state.startDate)
+    this.props.hideModal();
   }
 
   render(){
