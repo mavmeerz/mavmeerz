@@ -15,15 +15,15 @@ class ExpenseList extends Component {
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
     if (selected.length > 0) {
-      this.props.updateCategories(selected, category);
+      this.props.updateCategories(selected, category)
+        .then(() => this.refs.table.cleanSelected())
     }
   }
 
   _selectAccount(account) {
     const selected = this.refs.table.state.selectedRowKeys;
     if (selected.length > 0) {
-      this.props.updateAccounts(selected, account)
-        .then(() => this.refs.table.cleanSelected());
+      this.props.updateAccounts(selected, account);
     }
   }
 
