@@ -32,8 +32,13 @@ class DatePicker extends Component {
   }
 
   handleClick() {
-    this.props.setVisibilityFilter('SHOW_FILTERED_DATE', this.state.endDate, this.state.startDate)
-    this.props.hideModal();
+    if (this.state.endDate === this.state.startDate) {
+      this.props.setVisibilityFilter('SHOW_ALL', null, null)
+      this.props.hideModal()
+    } else {
+      this.props.setVisibilityFilter('SHOW_FILTERED_DATE', this.state.endDate, this.state.startDate)
+      this.props.hideModal();
+    }
   }
 
   render(){
