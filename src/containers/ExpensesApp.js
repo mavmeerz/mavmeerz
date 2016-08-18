@@ -36,7 +36,6 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
-
   }
 
   componentWillMount(){
@@ -103,7 +102,6 @@ export default class ExpensesApp extends Component {
             />
           </div>
         </div>
-      </div>
       )
     }
   }
