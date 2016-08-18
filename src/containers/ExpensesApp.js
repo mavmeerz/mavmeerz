@@ -11,6 +11,7 @@ then passed down to all children presentational components.
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import * as _ from 'lodash';
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
@@ -44,31 +45,28 @@ export default class ExpensesApp extends Component {
   // }
 
   parseCategoriesForChart() {
-    function filterByCategory(obj) {
-      if ('category' in obj && typeof(obj.category) === 'string' && obj.category !== null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    let arrByCategory = _.reject(this.props.expenses, expense => {
+                          return expense.category == 'Other'
+                        });
 
-    let dataSum = 0;
-    let arrByCategory = this.props.expenses.filter(filterByCategory);
-    let reduced = arrByCategory.reduce((p,c) => {
-      if (c.category != 'Other') {
-        p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
-        dataSum += c.amount;
-      }
-      return p;
-    }, {});
+    let categorizedTotal = _.sumBy(arrByCategory, expense => expense.amount);
 
-    let result = [];
-    for (let key in reduced) {
-      if (key != 'Other') {
-        result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
-      }
-    };
-    return result;
+    return  _.chain(arrByCategory)
+             .reduce((prev, expense) => {
+               if (prev[expense.category]) {
+                 prev[expense.category] += expense.amount
+               } else {
+                 prev[expense.category]  = expense.amount;
+               }
+               return prev;
+             }, {})
+             .map((categoryTotal, category) => {
+               return {
+                 name: category,
+                 y: Math.round((categoryTotal / categorizedTotal) * 100)
+               };
+             })
+             .value();
   }
 
   render(){
