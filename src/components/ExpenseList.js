@@ -1,6 +1,5 @@
 import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-// import {cleanSelected} from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
