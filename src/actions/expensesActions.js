@@ -8,8 +8,11 @@ export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
-export const FILTER_DATE = 'FILTER_DATE';
-export const INITIAL_FETCH = 'INITIAL_FETCH'
+export const INITIAL_FETCH = 'INITIAL_FETCH';
+export const SHOW_FILTERED_DATE = 'SHOW_FILTERED_DATE';
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const SHOW_ALL = 'SHOW_ALL';
+
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 export function toggleFetched(){
@@ -49,9 +52,9 @@ export function parsingCSV() {
   return {
     type: PARSING_CSV,
     isFetching: true
-    // expenses: response
   };
 }
+//-----------------------------
 
 //TOTAL ACTION CREATORS
 export function getTotal(total) {
@@ -70,6 +73,7 @@ function computeTotal(expensesArr){
   }
   return total;
 }
+//-----------------------
 
 //CATEGORIES ACTION CREATOR
 function addCategory(expenses){
@@ -88,17 +92,29 @@ function addAccount(expenses, account) {
   };
 }
 
-//FILTER DATE ACTION CREATOR
-export function filterDate(endDate, startDate) {
-  console.log('filterDate endDate: ', endDate)
-  console.log('filterDate startDate: ', startDate)
-  debugger;
+//VISIBILITY FILTER ACTION CREATORS
+export const setVisibilityFilter = (visibilityFilter, endDate, startDate) => {
   return {
-    type: FILTER_DATE,
+    type: SET_VISIBILITY_FILTER,
+    visibilityFilter: visibilityFilter,
     endDate: endDate,
     startDate: startDate
-  };
+  }
 }
+
+export const showAllExpenses = () => {
+  return {
+    type: SHOW_ALL
+  }
+}
+
+export const showFilteredExpenses = () => {
+  return {
+    type: SHOW_FILTERED_DATE
+  }
+}
+//--------------------------------------
+
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
@@ -152,13 +168,4 @@ export function updateAccounts(expenses, account) {
   return dispatch => {
     dispatch(addAccount(expenses, account));
   };
-}
-
-export function updateDates(endDate, startDate) {
-  console.log('updateDates endDate:', endDate)
-  console.log('updateDates startDate: ', startDate)
-  // return dispatch => {
-  //   dispatch(filterDate(endDate, startDate))
-  // }
-  return filterDate(endDate, startDate)
 }

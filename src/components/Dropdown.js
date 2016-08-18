@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import '../css/dropdown.css'
 import Categories from './DropdownCategory'
 import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
-import { receiveExpenses } from '../actions/expensesActions'
-// import Dropzone from 'react-dropzone';
 import Upload from '../containers/UploadApp'
+import ExpensesApp from '../containers/ExpensesApp'
+import { setVisibilityFilter } from '../actions/expensesActions'
+
 export class DropDownApp extends Component {
   constructor(props) {
     super(props);
 
-    console.log('====> in Dropdown props are: ', props);
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
     this.hideDateModal   = this.hideDateModal.bind(this);
     this.showDropzone    = this.showDropzone.bind(this);
     this.hideDropzone    = this.hideDropzone.bind(this);
-    this.receiveExpenses = this.receiveExpenses.bind(this);
+    this.showAllExpenses = this.showAllExpenses.bind(this);
   }
 
   showDateModal() {
@@ -33,30 +34,30 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: true});
   }
 
+
   hideDropzone() {
     this.setState({showDropzone: false});
   }
 
-  receiveExpenses() {
-    console.log('receiveExpenses');
-    this.props.receiveExpenses(this.props.allExpenses);
+  showAllExpenses() {
+    this.props.setVisibilityFilter('SHOW_ALL', null, null);
   }
 
     render() {
-
-      console.log('====> in Dropdown props are: ', this.props);
       return (
         <div>
           <nav id="primary_nav_wrap">
             <ul>
+              <li class="current-menu-item"><a href="#">Add</a></li>
+              <li class="current-menu-item"><a href="#">Delete</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
               <li><a href="#">Categorize</a>
                 <Categories
                   categorize={this.props.categorize}
                 />
               </li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.receiveExpenses}>Show All Expenses</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
               <li><a href='#'>Select Account</a>
                 <Accounts
                   selectAccount={this.props.selectAccount}
@@ -75,6 +76,19 @@ export class DropDownApp extends Component {
     }
 }
 
-export default DropDownApp
+function mapStateToProps(state) {
+  console.log('DatePicker mapStateToProps state is: ', state);
+  const { startDate, endDate } = state.expensesReducer
 
-// onClick={this.toggle}
+  return {
+    startDate: startDate,
+    endDate: endDate
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    setVisibilityFilter: setVisibilityFilter
+  }
+)(DropDownApp)
