@@ -19,7 +19,7 @@ export class DropDownApp extends Component {
     this.hideDateModal   = this.hideDateModal.bind(this);
     this.showDropzone    = this.showDropzone.bind(this);
     this.hideDropzone    = this.hideDropzone.bind(this);
-    this.dodeezhit       = this.dodeezhit.bind(this);
+    this.receiveExpenses = this.receiveExpenses.bind(this);
   }
 
   showDateModal() {
@@ -39,7 +39,7 @@ export class DropDownApp extends Component {
     this.setState({showDropzone: false});
   }
 
-  dodeezhit() {
+  receiveExpenses() {
     this.props.setVisibilityFilter('SHOW_ALL', null, null)
   }
 
