@@ -2,19 +2,19 @@ import Axios from 'axios'
 
 export const REQUEST_BUDGET = 'REQUEST_BUDGET'
 export const RECEIVE_BUDGET = 'RECEIVE_BUDGET'
-export const UPDATE_BUDGET = 'UPDATE_BUDGET'
-// export const
-// export const
 
 function requestBudgetItems(){
   return {
-    type: REQUEST_BUDGET
+    type: REQUEST_BUDGET,
+    isFetching: true
   }
 }
+
 function receiveBudgetItems(budgetItems){
   return {
     type: RECEIVE_BUDGET,
-    budgetItems
+    isFetching: false,
+    budgetItems: budgetItems
   }
 }
 
@@ -45,6 +45,7 @@ export function updateBudgetItems(budgetItems){
     })
     //dispatch response from server to reducer
     .then(res => {
+      console.log('RES', res);
       dispatch(receiveBudgetItems(res.data))
     })
     .catch(err => console.error(err))

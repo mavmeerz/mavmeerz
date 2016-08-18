@@ -3,7 +3,8 @@ import {reduxForm} from 'redux-form'
 
 import {Link} from 'react-router'
 import {signup} from '../actions/authActions'
-import UploadApp from '../containers/UploadApp'
+
+import Nav_Auth from './Nav_Auth'
 
 class SignupForm extends Component {
   constructor(props){
@@ -25,6 +26,7 @@ class SignupForm extends Component {
     const {fields:{name, email, password}, handleSubmit} = this.props
     return (
       <div>
+        <Nav_Auth/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Signup</p>
           <div>

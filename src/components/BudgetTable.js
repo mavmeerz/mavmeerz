@@ -7,18 +7,15 @@ export default class BudgetTable extends Component {
   }
 
   _onCellEdit(row, cellName, cellValue){
-    var essential;
+    let essential;
     row.essential === 'LUXURY' ? essential = 0 : essential = 1;
-
-    var goalUpdates = [
+    const goalUpdates = [
       {
         subCat: row.category,
         amount: +cellValue,
         essential: essential
       }
     ]
-
-    console.log('GOAL UPDATES: ', goalUpdates);
     this.props.updateBudget(goalUpdates)
   }
 
@@ -30,7 +27,7 @@ export default class BudgetTable extends Component {
               striped={ true }
               hover={ true }
               ref='table'
-              cellEdit={{mode: 'click', blueToSave: true, afterSaveCell: this._onCellEdit.bind(this)}}
+              cellEdit={{mode: 'click', afterSaveCell: this._onCellEdit.bind(this)}}
         >
           <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='essential' editable={ {type: 'checkbox', options: {values: 'ESSENTIAL:LUXURY'}}}>Essential or Luxury</TableHeaderColumn>

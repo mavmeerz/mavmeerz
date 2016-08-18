@@ -2,7 +2,9 @@ import React, {Component, PropTypes} from 'react'
 import {reduxForm} from 'redux-form'
 
 import {Link} from 'react-router'
-import {login} from '../actions/authActions'
+import { login } from '../actions/authActions'
+
+import Nav_Auth from './Nav_Auth'
 
 class LoginForm extends Component {
   static contextTypes = {
@@ -26,6 +28,7 @@ class LoginForm extends Component {
     const {fields:{email, password}, handleSubmit} = this.props;
     return (
       <div>
+        <Nav_Auth/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Login</p>
             <div>

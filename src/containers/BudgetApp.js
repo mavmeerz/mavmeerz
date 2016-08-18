@@ -53,12 +53,12 @@ function computeGoalTotal(budgetItems){
 }
 
 function mapStateToProps(state){
-  const { total } = state.expensesReducer
-  const { budgetItems, fetchingBudget } = state.budget
+  var { total } = state.expensesReducer
+  var { budgetItems, isFetching } = state.budget
   return {
     total: total,
     budgetItems: getVisibleBudgetItems(budgetItems),
-    fetchingBudget: fetchingBudget,
+    isFetching: isFetching,
     goalTotal: computeGoalTotal(budgetItems)
   }
 }
