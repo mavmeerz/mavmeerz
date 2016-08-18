@@ -14,6 +14,8 @@ export class DropDownApp extends Component {
   constructor(props) {
     super(props);
 
+    console.log('>>>>> Dropdown props are: ', props)
+
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
     this.hideDateModal   = this.hideDateModal.bind(this);
