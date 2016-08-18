@@ -51,16 +51,14 @@ export class DropDownApp extends Component {
         <div>
           <nav id="primary_nav_wrap">
             <ul>
-              <li class="current-menu-item"><a href="#">Add</a></li>
-              <li class="current-menu-item"><a href="#">Delete</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
               <li><a href="#">Categorize</a>
                 <Categories
                   categorize={this.props.categorize}
                 />
               </li>
+              <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
+              <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
               <li><a href='#'>Select Account</a>
                 <Accounts
                   selectAccount={this.props.selectAccount}
