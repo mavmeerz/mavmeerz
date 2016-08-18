@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+// import {cleanSelected} from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
@@ -15,7 +16,10 @@ class ExpenseList extends Component {
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
     if (selected.length > 0) {
-      this.props.updateCategories(selected, category);
+      this.props.updateCategories(selected, category)
+      .then(() => {
+        this.refs.table.cleanSelected()
+      })
     }
   }
 
