@@ -162,7 +162,7 @@ export default connect(
     fetchExpenses: fetchExpenses,
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
-    toggleFetched: toggleFetched
+    toggleFetched: toggleFetched,
     setVisibilityFilter: setVisibilityFilter
   }
 )(ExpensesApp)
