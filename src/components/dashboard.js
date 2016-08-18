@@ -18,8 +18,9 @@ class Dashboard extends Component {
   componentWillMount() {
     if(!this.props.isAuth){
       this.context.router.push('/login')
+    } else {
+      this.context.router.push('/transactions')
     }
-
   }
   // componentDidMount(){
   //   document.body.style.backgroundColor = 'white'
@@ -33,7 +34,7 @@ class Dashboard extends Component {
         </div>
         <div className="dash-nested-paths-nav">
           <ul className="dash-paths">
-            <li className="dash-link"><IndexLink to='/dashboard'>TRANSACTIONS</IndexLink></li>
+            <li className="dash-link"><IndexLink to='/transactions'>TRANSACTIONS</IndexLink></li>
             <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
           </ul>
         </div>
