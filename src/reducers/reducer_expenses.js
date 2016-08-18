@@ -12,8 +12,9 @@ import {
   GET_TOTAL,
   ADD_CATEGORY,
   ADD_ACCOUNT,
-  FILTER_DATE,
-  INITIAL_FETCH
+  INITIAL_FETCH,
+  SHOW_ALL,
+  SET_VISIBILITY_FILTER
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {
@@ -24,7 +25,8 @@ const INITIAL_STATE = {
   endDate: null,
   filteredExpenses: [],
   allExpenses: [],
-  initialFetchOccurred: false
+  initialFetchOccurred: false,
+  visibilityFilter: 'SHOW_ALL'
 }
 
 export default function expenses(state=INITIAL_STATE, action){
@@ -43,7 +45,7 @@ export default function expenses(state=INITIAL_STATE, action){
       return Object.assign({}, state, {
         isFetching: action.isFetching,
         expenses: action.expenses,
-        allExpenses: action.expenses
+        // allExpenses: action.expenses
       })
     case UPLOAD_REQUEST:
       return Object.assign({}, state, {
@@ -96,25 +98,12 @@ export default function expenses(state=INITIAL_STATE, action){
       }
       return state;
       break;
-    case FILTER_DATE:
-      let startDate = action.startDate.slice(0, 10);
-      let endDate = action.endDate.slice(0, 10);
-
-      if (endDate >= startDate) {
-        console.log('=======> state.expenses: ', state.expenses);
-        console.log('=====> startDate: ', startDate);
-        console.log('=====> endDate: ', endDate);
-        var filteredExpenses = state.expenses.filter((expense) => {
-          // console.log('=====> expense.date in filter: ', expense.date);
-
-          return expense.date >= startDate && expense.date <= endDate
-        })
-        console.log('Filter_date filtered expenses are: ', filteredExpenses)
-        return Object.assign({}, state, {
-          expenses: filteredExpenses,
-        });
-      }
-      return state;
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.visibilityFilter,
+        startDate: action.startDate,
+        endDate: action.endDate
+      });
       break;
     default:
       return state;
