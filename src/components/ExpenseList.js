@@ -97,5 +97,3 @@ class ExpenseList extends Component {
 }
 
 export default ExpenseList;
-// receiveExpenses={this.props.receiveExpenses}
-// allExpenses={this.props.allExpenses}
