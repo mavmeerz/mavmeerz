@@ -47,6 +47,14 @@ class DatePicker extends Component {
         <DateRange
            onInit={this.handleSelect}
            onChange={this.handleSelect}
+           theme={{
+             MonthAndYear   : {
+               background   : '#C8C8C8',
+               color        : '#2A2B2A'
+             },
+             Calendar : { width: 295 },
+             PredefinedRanges : { marginLeft: 10, marginTop: 10 },
+            }}
          />
         <button id="apply-dates" onClick={this.handleClick} >
           <i className="fa fa-check-circle"></i>

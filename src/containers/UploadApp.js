@@ -7,7 +7,7 @@ UploadAppButton component.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import parse from 'csv-parse'
-import Papa from '../../PapaParse-4.1.2'
+import Papa from '../../papaparse.min.js'
 // import Papa from 'babyparse'
 import { uploadCSV, parsingCSV } from '../actions/expensesActions.js'
 import { ErrorAlert } from 'pui-react-alerts';
