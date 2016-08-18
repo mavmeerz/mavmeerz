@@ -9,8 +9,14 @@ export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const FILTER_DATE = 'FILTER_DATE';
+export const INITIAL_FETCH = 'INITIAL_FETCH'
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
+export function toggleFetched(){
+  return {
+    type: INITIAL_FETCH
+  }
+}
 export function requestExpenses(){
   return {
     type: REQUEST_EXPENSES,

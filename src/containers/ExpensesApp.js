@@ -21,7 +21,14 @@ import DatePicker from '../components/DatePicker'
 
 import '../css/expensesApp.css'
 
-import { fetchExpenses, updateCategories, updateAccounts, updateDates, receiveExpenses } from '../actions/expensesActions'
+import {
+  fetchExpenses,
+  updateCategories,
+  updateAccounts,
+  updateDates,
+  receiveExpenses,
+  toggleFetched
+} from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
   constructor(props){
@@ -35,9 +42,12 @@ export default class ExpensesApp extends Component {
   }
 
   componentWillMount(){
-    var fetch = memoize(this.props.fetchExpenses)
-    fetch()
-    // this.props.receiveExpenses()
+    // var fetch = memoize(this.props.fetchExpenses)
+    // fetch()
+    if (!this.props.initialFetchOccurred) {
+      this.props.fetchExpenses()
+      this.props.toggleFetched()
+    }
   }
 
   // componentDidMount() {
@@ -119,11 +129,15 @@ props you want to pass to a child presentational component you are wrapping
   @return = object of transformed store state
 */
 function mapStateToProps(state){
-  console.log('ExpensesApp in mapStateToProps state is: ', state)
-  const { expenses, isFetching, total, startDate, endDate } = state.expensesReducer
+  const {
+    expenses,
+    isFetching,
+    total,
+    startDate,
+    endDate,
+    initialFetchOccurred
+  } = state.expensesReducer
   console.log('Expenses in mapStateToProps in ExpensesApp: ', expenses );
-  console.log('ExpensesApp mapStateToProps startDate is: ', startDate);
-  console.log('ExpensesApp mapStateToProps endDate is: ', endDate);
 
   return {
     expenses: expenses,
@@ -131,6 +145,7 @@ function mapStateToProps(state){
     total: total,
     startDate: startDate,
     endDate: endDate,
+    initialFetchOccurred: initialFetchOccurred
   }
 }
 
@@ -142,6 +157,7 @@ export default connect(
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
     updateDates: updateDates,
-    receiveExpenses: receiveExpenses
+    receiveExpenses: receiveExpenses,
+    toggleFetched: toggleFetched
   }
 )(ExpensesApp)

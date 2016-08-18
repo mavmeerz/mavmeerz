@@ -12,13 +12,28 @@ import {
   GET_TOTAL,
   ADD_CATEGORY,
   ADD_ACCOUNT,
-  FILTER_DATE
+  FILTER_DATE,
+  INITIAL_FETCH
 } from '../actions/expensesActions.js';
 
-const INITIAL_STATE = {expenses: [], total: 0, isFetching: false, startDate: null, endDate: null, filteredExpenses: [], allExpenses: []}
+const INITIAL_STATE = {
+  expenses: [],
+  total: 0,
+  isFetching: false,
+  startDate: null,
+  endDate: null,
+  filteredExpenses: [],
+  allExpenses: [],
+  initialFetchOccurred: false
+}
 
 export default function expenses(state=INITIAL_STATE, action){
   switch (action.type) {
+    case INITIAL_FETCH:
+      return Object.assign({}, state, {
+        initialFetchOccurred: true
+      })
+      break;
     case REQUEST_EXPENSES:
       return Object.assign({}, state, {
         isFetching: action.isFetching
