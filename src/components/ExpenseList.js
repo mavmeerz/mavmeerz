@@ -10,12 +10,10 @@ class ExpenseList extends Component {
   constructor(props) {
     super(props);
 
-  console.log('ExpenseList props are: ', props);
   }
 
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
-    console.log('Category from _categorize function: ', category);
     if (selected.length > 0) {
       this.props.updateCategories(selected, category);
     }
@@ -99,5 +97,3 @@ class ExpenseList extends Component {
 }
 
 export default ExpenseList;
-// receiveExpenses={this.props.receiveExpenses}
-// allExpenses={this.props.allExpenses}

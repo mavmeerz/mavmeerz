@@ -36,7 +36,6 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
-
   }
 
   componentWillMount(){
@@ -104,7 +103,6 @@ export default class ExpensesApp extends Component {
           </div>
           </div>
         </div>
-      </div>
       )
     }
   }
@@ -115,20 +113,14 @@ ExpensesApp.PropTypes = {
   expenses: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   fetchExpenses: PropTypes.func.isRequired
-  // allExpenses: PropTypes.array.isRequired,
 }
 
 function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
-  console.log('=====> expenses in filter: ', expenses)
-  console.log('******> getVisibleExpenses startDate is: ', startDate);
-
   switch (visibilityFilter) {
     case 'SHOW_ALL':
       return expenses
     case 'SHOW_FILTERED_DATE':
       return expenses.filter((expense) => {
-        console.log('+++> expense.date: ', expense.date)
-        console.log('******> getVisibleExpenses startDate is: ', startDate);
         if (endDate && startDate) {
           return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
         }

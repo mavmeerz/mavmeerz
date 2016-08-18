@@ -14,8 +14,6 @@ export class DropDownApp extends Component {
   constructor(props) {
     super(props);
 
-    console.log('====> in Dropdown props are: ', props);
-
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
     this.hideDateModal   = this.hideDateModal.bind(this);
@@ -46,8 +44,6 @@ export class DropDownApp extends Component {
   }
 
     render() {
-
-      console.log('====> in Dropdown props are: ', this.props);
       return (
         <div>
           <nav id="primary_nav_wrap">
@@ -83,8 +79,6 @@ export class DropDownApp extends Component {
 function mapStateToProps(state) {
   console.log('DatePicker mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
-  console.log('DatePicker mapStateToProps startDate is: ', startDate);
-  console.log('DatePicker mapStateToProps endDate is: ', endDate);
 
   return {
     startDate: startDate,
@@ -94,7 +88,6 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-
   {
     setVisibilityFilter: setVisibilityFilter
   }
