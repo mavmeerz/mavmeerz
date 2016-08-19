@@ -12,14 +12,14 @@ class LoginForm extends Component {
   }
 
   componentWillMount(){
-    window.localStorage.removeItem('zenmoToken')
+    window.localStorage.removeItem('zenmoToken');
   }
 
   onSubmit(loginData){
     this.props.login(loginData)
     .then((response) => {
       if(response.payload.status < 300){
-        this.context.router.push('/dashboard')
+        this.context.router.push('/dashboard');
       }
     })
   }
@@ -51,10 +51,10 @@ class LoginForm extends Component {
 }
 
 function validate(values) {
-  const errors = {}
-  if(!values.email) errors.email = 'Please enter a valid email'
-  if(!values.password) errors.password = 'Please enter a password'
-  return errors
+  const errors = {};
+  if(!values.email) errors.email = 'Please enter a valid email';
+  if(!values.password) errors.password = 'Please enter a password';
+  return errors;
 }
 
 export default reduxForm({
