@@ -7,7 +7,7 @@ import {
   RECEIVE_EXPENSES,
   UPLOAD_REQUEST,
   UPLOAD_SUCCESS,
-  UPLOAD_FAILURE,
+  UPLOAD_FAIL,
   PARSING_CSV,
   GET_TOTAL,
   ADD_CATEGORY,
@@ -49,19 +49,26 @@ export default function expenses(state=INITIAL_STATE, action){
       })
     case UPLOAD_REQUEST:
       return Object.assign({}, state, {
-        isFetching: action.isFetching
+        // isFetching: action.isFetching
       })
       break;
     case UPLOAD_SUCCESS:
+    console.log('action in UPLOAD_SUCCESS: ', action);
     console.log('upload success in expenses reducer', state.expenses, action.expenses)
       return Object.assign({}, state, {
-        isFetching: action.isFetching,
+        // isFetching: action.isFetching,
+        uploadSuccess: action.uploadSuccess,
         expenses: state.expenses.concat(action.expenses)
       })
       break;
+    case UPLOAD_FAIL:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching
+      });
+      break;
     case PARSING_CSV:
       return Object.assign({}, state, {
-        isFetching: action.isFetching,
+        // isFetching: action.isFetching,
       })
       break;
     case GET_TOTAL:

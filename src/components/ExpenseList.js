@@ -8,6 +8,7 @@ import { setVisibilityFilter } from '../actions/expensesActions'
 
 class ExpenseList extends Component {
   constructor(props) {
+    console.log('props in expenselist wooooooh: ', props);
     super(props);
 
   }
@@ -59,6 +60,7 @@ class ExpenseList extends Component {
           <div className="transactions">
 
             <Dropdown
+                uploadSuccess={this.props.uploadSuccess}
                 categorize={this._categorize.bind(this)}
                 selectAccount={this._selectAccount.bind(this)}
                 setVisibilityFilter={this.props.setVisibilityFilter}

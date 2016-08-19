@@ -46,35 +46,42 @@ export class DropDownApp extends Component {
     this.props.setVisibilityFilter('SHOW_ALL', null, null);
   }
 
-    render() {
-      return (
-        <div>
-          <nav id="primary_nav_wrap">
-            <ul>
-              <li><a href="#">Categorize</a>
-                <Categories
-                  categorize={this.props.categorize}
-                />
-              </li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
-              <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
-              <li><a href='#'>Select Account</a>
-                <Accounts
-                  selectAccount={this.props.selectAccount}
-                />
-              </li>
-            </ul>
-          </nav>
-          <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
-            <DatePicker hideModal = {this.hideDateModal}/>
-          </Modal>
-          <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
-            <Upload />
-          </Modal>
-        </div>
-      )
+  componentWillReceiveProps(props) {
+    console.log('got herrrrrr w props: ', props);
+    if (props.uploadSuccess) {
+      this.setState({showDropzone: false});
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <nav id="primary_nav_wrap">
+          <ul>
+            <li><a href="#">Categorize</a>
+              <Categories
+                categorize={this.props.categorize}
+              />
+            </li>
+            <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
+            <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
+            <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
+            <li><a href='#'>Select Account</a>
+              <Accounts
+                selectAccount={this.props.selectAccount}
+              />
+            </li>
+          </ul>
+        </nav>
+        <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
+          <DatePicker hideModal = {this.hideDateModal}/>
+        </Modal>
+        <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
+          <Upload />
+        </Modal>
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {

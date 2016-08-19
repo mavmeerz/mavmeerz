@@ -73,7 +73,9 @@ export default class ExpensesApp extends Component {
   }
 
   render(){
-    var expenses = this.props.expenses;
+    const expenses      = this.props.expenses
+        , uploadSuccess = this.props.uploadSuccess;
+    console.log('uploadSuccess in ExpensesApp REnder: ', uploadSuccess);
     if (this.props.isFetching) {
       return (
         <Spin/>
@@ -83,6 +85,7 @@ export default class ExpensesApp extends Component {
         <div className="expenseApp-container">
           <div className="expense-list-container">
             <ExpenseList
+              uploadSuccess={uploadSuccess}
               dates={
                 {
                   startDate:this.props.startDate,
@@ -137,6 +140,7 @@ props you want to pass to a child presentational component you are wrapping
 function mapStateToProps(state){
   const {
     expenses,
+    uploadSuccess,
     isFetching,
     total,
     startDate,
@@ -147,6 +151,7 @@ function mapStateToProps(state){
 
   return {
     expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
+    uploadSuccess: uploadSuccess,
     isFetching: isFetching,
     total: total,
     startDate: startDate,

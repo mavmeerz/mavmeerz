@@ -3,7 +3,8 @@ import Axios from 'axios'
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
-export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
+export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
+export const UPLOAD_FAIL = 'UPLOAD_FAIL';
 export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
@@ -43,14 +44,22 @@ export function uploadRequest(){
 export function uploadSuccess(response){
   return {
     type: UPLOAD_SUCCESS,
-    isFetching: false,
+    // isFetching: false,
+    uploadSuccess: true,
     expenses: response
+  };
+}
+export function uploadFail() {
+  console.log('=====> got to uploadFAAILR');
+  return {
+    type: UPLOAD_FAIL,
+    isFetching: false
   };
 }
 export function parsingCSV() {
   return {
     type: PARSING_CSV,
-    isFetching: true
+    // isFetching: true
   };
 }
 //-----------------------------
@@ -144,7 +153,7 @@ export function uploadCSV(account, csv){
     .then(res =>  {
       dispatch(uploadSuccess(res.data))
       dispatch(getTotal(computeTotal(res.data)))
-    })
+    });
   }
 }
 
