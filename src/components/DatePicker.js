@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
+import { Button } from 'react-bootstrap';
 import Dropdown from './Dropdown'
 import moment from 'moment';
 import ExpensesApp from '../containers/ExpensesApp'
@@ -56,10 +57,7 @@ class DatePicker extends Component {
              PredefinedRanges : { marginLeft: 10, marginTop: 10 },
             }}
          />
-        <button id="apply-dates" onClick={this.handleClick} >
-          <i className="fa fa-check-circle"></i>
-          OK
-        </button>
+          <Button bsSize="xsmall" onClick={this.handleClick}>Apply Dates</Button>
       </div>
     )
   }
@@ -83,3 +81,7 @@ export default connect(
     setVisibilityFilter: setVisibilityFilter
   }
 )(DatePicker)
+// <button id="apply-dates" onClick={this.handleClick} >
+//   <i className="fa fa-check-circle"></i>
+//   OK
+// </button>

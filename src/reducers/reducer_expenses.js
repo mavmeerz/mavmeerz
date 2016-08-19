@@ -112,21 +112,21 @@ export default function expenses(state=INITIAL_STATE, action){
         endDate: action.endDate
       });
       break;
-    case SHOW_ALL:
-      // console.log('****> in reducer show_all', action.expenses, action.allExpenses)
-      return Object.assign({}, state, {
-        visibilityFilter: action.visibilityFilter,
-        startDate: null,
-        endDate: null
-      });
-      break;
-    case SET_VISIBILITY_FILTER:
-      return Object.assign({}, state, {
-        visibilityFilter: action.visibilityFilter,
-        startDate: action.startDate,
-        endDate: action.endDate
-      });
-      break;
+    // case SHOW_ALL:
+    //   // console.log('****> in reducer show_all', action.expenses, action.allExpenses)
+    //   return Object.assign({}, state, {
+    //     visibilityFilter: action.visibilityFilter,
+    //     startDate: null,
+    //     endDate: null
+    //   });
+    //   break;
+    // case SET_VISIBILITY_FILTER:
+    //   return Object.assign({}, state, {
+    //     visibilityFilter: action.visibilityFilter,
+    //     startDate: action.startDate,
+    //     endDate: action.endDate
+    //   });
+      // break;
     default:
       return state;
   }
