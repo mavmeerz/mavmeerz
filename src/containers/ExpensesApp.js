@@ -49,7 +49,7 @@ export default class ExpensesApp extends Component {
 
   parseCategoriesForChart() {
     let arrByCategory = _.reject(this.props.expenses, expense => {
-                          return expense.category == 'Other'
+                          return expense.category == 'Uncategorized'
                         });
 
     let categorizedTotal = _.sumBy(arrByCategory, expense => expense.amount);
