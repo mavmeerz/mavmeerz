@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
 import { Button } from 'react-bootstrap';
 import '../css/datepicker.css'
-import moment from 'moment';
+import Dropdown from './Dropdown'
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
 
