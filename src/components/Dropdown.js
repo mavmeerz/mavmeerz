@@ -90,7 +90,7 @@ function mapStateToProps(state) {
 
   return {
     startDate: startDate,
-    endDate: endDate,
+    endDate: endDate
   }
 }
 
