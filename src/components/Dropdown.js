@@ -76,9 +76,7 @@ export class DropDownApp extends Component {
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
           <DatePicker hideModal = {this.hideDateModal}/>
         </Modal>
-        <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
-          <Upload />
-        </Modal>
+
       </div>
     )
   }
@@ -100,3 +98,6 @@ export default connect(
     setVisibilityFilter: setVisibilityFilter
   }
 )(DropDownApp)
+// <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
+//   <Upload />
+// </Modal>
