@@ -19,7 +19,7 @@ exports.addAllExpenses = (accountId, expenseDataArr,fileId,userId) => {
   return new Promise((resolve, reject) => {
     // console.log('expense data array lowercased ?', expenseDataArr[0]);
 
-    subCategoryController.getSubCategoryId('Other').then((id) => {
+    subCategoryController.getSubCategoryId('Uncategorized').then((id) => {
       expenseDataArr.forEach((expense) => {
 
         let inDate = {
