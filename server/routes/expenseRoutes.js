@@ -48,7 +48,7 @@ router.post('/', (req, res, next) => {
 
 // bulk update expenses
 router.put('/', (req, res) => {
-  let userID = tokenUtil.getUserIDFromToken(req.body.token);
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
   // utility function to update category for an array of
   // expenses in expenses DB
   if (req.body.expenses) {
