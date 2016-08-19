@@ -14,11 +14,12 @@ function addUserGoalsToDB(userGoals,userId) {
 
 function updateUserGoalsToDB(userGoals,userId) {
   return new Promise((resolve, reject) => {
+    let promises = [];
     userGoals.forEach((goal) => {
       goal.userId = userId;
-      goalController.updateGoal(goal);
+      promises.push(goalController.updateGoal(goal));
     })
-    resolve('Success updating expenses!')
+    Promise.all(promises).then(() => resolve('Success updating expenses!'));
   })
 };
 

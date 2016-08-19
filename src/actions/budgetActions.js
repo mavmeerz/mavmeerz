@@ -45,7 +45,8 @@ export function updateBudgetItems(budgetItems){
     })
     //dispatch response from server to reducer
     .then(res => {
-      console.log('RES', res);
+      console.log('==========> RES', res);
+      console.log('=========> res.data with actual money spent: ', res.data.filter(category => category.currAmount > 0));
       dispatch(receiveBudgetItems(res.data))
     })
     .catch(err => console.error(err))

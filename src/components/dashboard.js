@@ -36,7 +36,7 @@ class Dashboard extends Component {
         </div>
         <div className="dash-nested-paths-nav">
           <ul className="dash-paths">
-            <li className="dash-link"><IndexLink to='/transactions'>TRANSACTIONS</IndexLink></li>
+            <li className="dash-link"><Link to='/'>TRANSACTIONS</Link></li>
             <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
           </ul>
         </div>
