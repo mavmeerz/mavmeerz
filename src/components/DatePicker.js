@@ -6,6 +6,7 @@ import '../css/datepicker.css'
 import Dropdown from './Dropdown'
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
+import moment from 'moment'
 
 class DatePicker extends Component {
   constructor(props) {
