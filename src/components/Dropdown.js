@@ -76,7 +76,16 @@ export class DropDownApp extends Component {
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
           <DatePicker hideModal = {this.hideDateModal}/>
         </Modal>
-
+        <Modal show={this.state.showDropzone} onHide={this.hideDropzone} bsSize="m"
+           aria-labelledby="contained-modal-title-m"
+        >
+          <Modal.Header className="upload-header">
+            <Modal.Title id="contained-modal-title-m"> Upload Your CSV </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="upload-body">
+            <Upload {...this.props}/>
+          </Modal.Body>
+        </Modal>
       </div>
     )
   }

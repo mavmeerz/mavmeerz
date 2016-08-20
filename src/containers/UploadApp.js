@@ -42,9 +42,11 @@ export default class UploadApp extends Component {
   render () {
     const badUpload = this.state.badUpload;
     return (
-      <div>
-        <div>
+      <div className="uploadcsv">
+      <div className="bank"> Bank Account: </div>
+        <div className="upload-input-container">
           <input
+            className="upload-input"
             type="text"
             placeholder="Account Name"
             value={this.state.account}
