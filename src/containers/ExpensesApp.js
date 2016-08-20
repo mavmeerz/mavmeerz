@@ -17,6 +17,7 @@ import Total from '../components/Total.js'
 import Chart from '../components/Chart.js'
 import Spin from '../components/Spin'
 import DatePicker from '../components/DatePicker'
+import KarmoMeter from './KarmoMeterApp'
 import '../css/expensesApp.css'
 
 import {
@@ -97,13 +98,20 @@ export default class ExpensesApp extends Component {
               updateAccounts={this.props.updateAccounts.bind(this)}
             />
           </div>
-          <div className="chart-container">
-            <Total
-                total={this.props.total}
-            />
-            <Chart
-              data={this.parseCategoriesForChart()}
-            />
+          <div className="rightSection-container">
+            <div className="chart-container">
+              <Total
+                  total={this.props.total}
+              />
+              <Chart
+                data={this.parseCategoriesForChart()}
+              />
+            </div>
+            <br />
+            <div className="karmometer-container">
+              <KarmoMeter
+              />
+            </div>
           </div>
         </div>
       )

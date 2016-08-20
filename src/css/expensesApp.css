@@ -4,7 +4,7 @@
 }
 
 .expense-list-container,
-.chart-container {
+.rightSection-container {
   top: 15%
 }
 
@@ -14,10 +14,16 @@
   width: 48%;
 }
 
-.chart-container {
-  position: fixed;
+/*.chart-container {
+  max-height: 40px;
+}*/
+
+.rightSection-container {
+  position:fixed;
   right: 5%;
   width: 40%;
+  margin: auto;
+  display: block;
 }
 
 .total {

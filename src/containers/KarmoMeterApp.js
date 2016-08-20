@@ -22,8 +22,7 @@ export default class KarmoMeter extends Component {
             height="200">
         </svg>
       </div>
-
-    )
+    );
   }
 
 }

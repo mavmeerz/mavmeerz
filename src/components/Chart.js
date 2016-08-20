@@ -12,7 +12,8 @@ export class Chart extends React.Component {
   componentDidMount() {
 	  this.chart = $(ReactDOM.findDOMNode(this.refs.chart)).highcharts({
             chart: {
-                type: 'pie'
+							size: 20,
+              type: 'pie'
             },
             title: 'Expenses per Category',
             yAxis: {
