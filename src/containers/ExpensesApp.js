@@ -73,7 +73,7 @@ export default class ExpensesApp extends Component {
              .value();
   }
 
-  render(){
+  render() {
     const expenses      = this.props.expenses
         , uploadSuccess = this.props.uploadSuccess;
     console.log('uploadSuccess in ExpensesApp REnder: ', uploadSuccess);
@@ -97,22 +97,19 @@ export default class ExpensesApp extends Component {
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
             />
+            <div className="total-container">
+              <Total total={this.props.total} />
+            </div>
           </div>
           <div className="rightSection-container">
+            <div className="karmometer-container">
+              <KarmoMeter />
+            </div>
             <div className="chart-container">
-              <Total
-                  total={this.props.total}
-              />
-              <Chart
-                data={this.parseCategoriesForChart()}
-              />
+              <Chart data={this.parseCategoriesForChart()} />
             </div>
             <br />
-            <div className="karmometer-container">
-              <KarmoMeter
-              />
-            </div>
-          </div>
+         </div>
         </div>
       )
     }

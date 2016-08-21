@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
+import '../css/expensesApp.css'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'

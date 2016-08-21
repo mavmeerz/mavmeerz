@@ -31,12 +31,12 @@
   to { transform: rotate(360deg); }
 }
 
-.dropzone {
+/*.dropzone {
     margin: 10px auto;
     padding: 10px;
     border: 2px dotted white;
     max-width: 40%;
-}
+}*/
 
 .transactions {
   margin: 0 auto;
