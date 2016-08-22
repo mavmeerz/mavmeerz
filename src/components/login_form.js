@@ -43,6 +43,7 @@ class LoginForm extends Component {
               </div>
 
               <button type="submit" className="button button-block">Submit</button>
+
           </form><br/>
           <Link to="/signup" className="button button-block">SIGNUP</Link>
         </div>
