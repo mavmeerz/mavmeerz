@@ -29,9 +29,9 @@ class LoginForm extends Component {
     return (
       <div>
       <Nav_Auth/>
-      <div>
+        <div className="form">
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <p className="heading">Login</p>
+            <h1>Login</h1>
               <div>
                 <input type="text" {...email} placeholder='name' className="biginput"/>
                 <div className="err-msg">{email.touched ? email.error : ''}</div>
@@ -41,11 +41,11 @@ class LoginForm extends Component {
                 <input type="password" {...password} placeholder='password' className="biginput"/>
                 <div className="err-msg">{password.touched ? password.error : ''}</div>
               </div>
-            <div className="btn-group">
-              <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
-            </div>
+
+              <button type="submit" className="button button-block">Submit</button>
+
           </form>
-          <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
+          <Link to="/signup" className="button button-block">SIGNUP</Link>
         </div>
       </div>
     )

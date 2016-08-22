@@ -27,7 +27,7 @@ class SignupForm extends Component {
     return (
       <div>
         <Nav_Auth/>
-        <div className="signup-form">
+        <div className="form">
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <h1>Signup</h1>
             <div>
