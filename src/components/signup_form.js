@@ -44,7 +44,7 @@ class SignupForm extends Component {
               <input type="password" {...password} placeholder='password' className="biginput"/>
               <div className="err-msg">{password.touched ? password.error : ''}</div>
             </div>
-              <button type="submit" className="button button-block btn hvr-bounce-to-left">Submit</button>
+              <button type="submit" className="button button-block">Submit</button>
           </form><br/>
           <Link to="/login" className="button button-block">LOGIN</Link><br/>
         </div>

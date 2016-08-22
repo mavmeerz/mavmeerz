@@ -20,17 +20,19 @@
 .nav-logo {
   float: left;
   font-size: 35px;
+  color: #0C6291;
 }
 
 .nav-item {
   float: right;
+  color: #0C6291;
 }
 
-.signup {
+/*.signup {
   margin-top: 8%;
 }
 
 .login {
   margin: 0 auto;
   clear: left;
-}
+}*/

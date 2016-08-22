@@ -8,7 +8,8 @@ html {
 
 a {
   text-decoration:none;
-  color: #1ab188;
+  /*color: #1ab188;*/
+  color: #0C6CA0;
   transition:.5s ease;
   /*&:hover {
     color:$main-dark;
@@ -20,7 +21,8 @@ Link {
 }
 
 .signup-form {
-  background-color: #13232f;
+  /*background-color: #13232f;*/
+  background-color: #333;
   padding: 40px;
   max-width:500px;
   margin:6% auto;
@@ -43,7 +45,7 @@ Link {
     text-decoration:none;
     padding:15px;
     background:rgba(#a0b3b0,.25);
-    color:#a0b3b0;
+    color:#0C6CA0;
     font-size:20px;
     float:left;
     width:50%;
@@ -158,7 +160,7 @@ textarea {
   text-align: center;
   text-transform:uppercase;
   letter-spacing:.1em;
-  background:#1ab188;
+  background:#0C6CA0;
   color:#ffffff;
   transition:all.5s ease;
   -webkit-appearance: none;

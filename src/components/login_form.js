@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {reduxForm} from 'redux-form'
-
+import '../css/signup.css'
 import {Link} from 'react-router'
 import { login } from '../actions/authActions'
 
@@ -28,23 +28,25 @@ class LoginForm extends Component {
     const {fields:{email, password}, handleSubmit} = this.props;
     return (
       <div>
-        <Nav_Auth/>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <p className="heading">Login</p>
-            <div>
-              <input type="text" {...email} placeholder='name' className="biginput"/>
-              <div className="err-msg">{email.touched ? email.error : ''}</div>
-            </div>
+      <Nav_Auth/>
+      <div>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <p className="heading">Login</p>
+              <div>
+                <input type="text" {...email} placeholder='name' className="biginput"/>
+                <div className="err-msg">{email.touched ? email.error : ''}</div>
+              </div>
 
-            <div>
-              <input type="password" {...password} placeholder='password' className="biginput"/>
-              <div className="err-msg">{password.touched ? password.error : ''}</div>
+              <div>
+                <input type="password" {...password} placeholder='password' className="biginput"/>
+                <div className="err-msg">{password.touched ? password.error : ''}</div>
+              </div>
+            <div className="btn-group">
+              <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
             </div>
-          <div className="btn-group">
-            <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
-          </div>
-        </form>
-        <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
+          </form>
+          <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
+        </div>
       </div>
     )
   }
