@@ -10,7 +10,7 @@ export default class KarmoMeter extends Component {
   }
 
   componentDidMount(){
-    d3.select("#fillgauge").call(liquidfillgauge, 55);
+    d3.select("#fillgauge").call(liquidfillgauge, 100);
   }
 
   render(){

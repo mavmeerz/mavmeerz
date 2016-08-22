@@ -15,6 +15,11 @@
   overflow: hidden;
   background-color: #333;
   color: white;
+  width: 100%;
+}
+
+.nav>li>a {
+  width: 100%;
 }
 
 .nav-logo {
