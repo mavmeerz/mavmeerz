@@ -25,3 +25,12 @@
 .nav-item {
   float: right;
 }
+
+.signup {
+  margin-top: 8%;
+}
+
+.login {
+  margin: 0 auto;
+  clear: left;
+}

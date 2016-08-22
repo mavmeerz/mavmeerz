@@ -1,6 +1,7 @@
 .expenseApp-container {
   /*width: 100%;*/
   margin: 0 auto;
+  top: 4%;
 }
 
 
@@ -44,9 +45,5 @@
 .transactions {
   margin: 0 auto;
   padding-left: 50px;
-  padding-top: 8%;
+  /*padding-top: 8%;*/
 }
-/*.highcharts-background {
-  background-color: none;
-  fill: none;
-}*/
