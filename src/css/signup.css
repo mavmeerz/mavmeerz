@@ -150,6 +150,7 @@ textarea {
 }*/
 
 .button {
+  text-decoration: none;
   margin: 0 auto;
   border:0;
   outline:none;

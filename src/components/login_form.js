@@ -44,7 +44,7 @@ class LoginForm extends Component {
 
               <button type="submit" className="button button-block">Submit</button>
 
-          </form>
+          </form><br/>
           <Link to="/signup" className="button button-block">SIGNUP</Link>
         </div>
       </div>
