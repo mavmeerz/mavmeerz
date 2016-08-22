@@ -1,7 +1,11 @@
 .expenseApp-container {
   /*width: 100%;*/
   margin: 0 auto;
+<<<<<<< 29155aeddb2bd9a5c0059dbaad1f74e5c34b65ce
   margin-top: 4%;
+=======
+  top: 4%;
+>>>>>>> [style] expenselist div foundation is ready
 }
 
 
@@ -90,7 +94,3 @@
   margin-top: 42%;
   margin-left: 5%;
 }
-/*.highcharts-background {
-  background-color: none;
-  fill: none;
-}*/
