@@ -37,11 +37,8 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
-<<<<<<< 457f12b5e9c9aac767242753e831e8a93ba86d1a
+
     this.parseCategoriesForChart = this.parseCategoriesForChart.bind(this);
-=======
-    this.parseCategoriesForChart = this.parseCategoriesForChart.bind(this)
->>>>>>> [refactor] move Total, Chart and Karmometer into ExpenseList
   }
 
   componentWillMount(){
