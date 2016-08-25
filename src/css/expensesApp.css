@@ -14,6 +14,7 @@
 }
 
 .rightSection-container {
+  position: absolute;
   width: 50%;
   margin: 0 auto;
   float: left;
@@ -67,5 +68,16 @@
 }
 
 .total-container {
+  margin-left: 5%;
+}
+
+.no-expenses {
+  text-align: center;
+  font-size: 24px;
+}
+
+.total-container {
+  position: absolute;
+  margin-top: 42%;
   margin-left: 5%;
 }
