@@ -98,7 +98,7 @@ export default class ExpensesApp extends Component {
                   endDate: this.props.endDate
                 }
               }
-              total={total}
+              total={this.props.total}
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
