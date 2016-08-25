@@ -9,17 +9,14 @@
   position: absolute;
   margin: 0 auto;
   margin-left: 5%;
-  width: 50%;
+  width: 100%;
   float: left;
 }
 
 .rightSection-container {
-  position: absolute;
   width: 50%;
   margin: 0 auto;
-  float: right;
-  text-align: center;
-  margin-left: 10%;
+  float: left;
 }
 
 .react-bs-table {
@@ -60,7 +57,8 @@
 .transactions {
   margin: 0 auto;
   padding-left: 50px;
-  /*padding-top: 8%;*/
+  width: 50%;
+  float: left;
 }
 
 .no-expenses {
@@ -69,7 +67,5 @@
 }
 
 .total-container {
-  position: absolute;
-  margin-top: 42%;
   margin-left: 5%;
 }

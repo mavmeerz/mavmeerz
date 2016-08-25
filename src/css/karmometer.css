@@ -13,11 +13,9 @@ body {
   margin: 0 auto;
   overflow: auto;
   width: 100%;
-  text-align: center;
-  margin-left: 90%;
 }
 
 .karmometer {
   margin: 0 auto;
-  /*padding-top: 8%;*/
+  width: 50%;
 }

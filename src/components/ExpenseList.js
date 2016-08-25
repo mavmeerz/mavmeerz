@@ -7,13 +7,10 @@ import '../css/expensesApp.css'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import KarmoMeter from '../containers/KarmoMeterApp'
-import Total from './Total.js'
-import Chart from './Chart.js'
+import Total from './Total'
+import Chart from './Chart'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
-import Total from './Total'
-import KarmoMeter from '../containers/KarmoMeterApp'
-import Chart from './Chart'
 
 class ExpenseList extends Component {
   constructor(props) {
@@ -91,19 +88,19 @@ class ExpenseList extends Component {
               <TableHeaderColumn dataField='account' width='100' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
 
             </BootstrapTable>
+            <div className="total-container">
+              <Total total={this.props.total} />
+            </div>
           </div>
-          <div className="total-container">
-            <Total total={this.props.total} />
-          </div>
-        <div className="rightSection-container">
-          <div className="karmometer-container">
-            <KarmoMeter />
-          </div>
-          <div className="chart-container">
-            <Chart data={this.props.parseCategoriesForChart()} />
+          <div className="rightSection-container">
+            <div className="karmometer-container">
+              <KarmoMeter />
+            </div>
+            <div className="chart-container">
+              <Chart data={this.props.parseCategoriesForChart()} />
+            </div>
           </div>
         </div>
-      </div>
       )
 
     } else {
