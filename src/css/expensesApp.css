@@ -14,7 +14,6 @@
 }
 
 .rightSection-container {
-  position: absolute;
   width: 50%;
   margin: 0 auto;
   float: left;
@@ -95,7 +94,5 @@
 }
 
 .total-container {
-  position: absolute;
-  margin-top: 42%;
   margin-left: 5%;
 }
