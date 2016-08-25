@@ -2,10 +2,15 @@ import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import '../css/expensesApp.css'
+// import '../css/karmometer.css'
+// import '../css/chart.css'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
+import Total from './Total'
+import KarmoMeter from '../containers/KarmoMeterApp'
+import Chart from './Chart'
 
 class ExpenseList extends Component {
   constructor(props) {
@@ -84,14 +89,26 @@ class ExpenseList extends Component {
 
             </BootstrapTable>
           </div>
+          <div className="total-container">
+            <Total total={this.props.total} />
+          </div>
+          <div className="rightSection-container">
+            <div className="karmometer-container">
+              <KarmoMeter />
+            </div>
+            <div className="chart-container">
+              <Chart data={this.props.parseCategoriesForChart()} />
+            </div>
+            <br />
+          </div>
         </div>
       )
 
     } else {
       return (
         <div className='no-expenses'>
-          <p>You have no expenses yet! Upload files below to get started.</p><br/>
-          <Upload/><br/>
+          <p>Upload files below to get started.</p>
+          <Upload/>
           <p>Or add your expenses manually.</p>
         </div>
       )

@@ -14,9 +14,12 @@
 }
 
 .rightSection-container {
+  position: absolute;
   width: 50%;
   margin: 0 auto;
   float: right;
+  text-align: center;
+  margin-left: 10%;
 }
 
 .react-bs-table {
@@ -53,4 +56,15 @@
   margin: 0 auto;
   padding-left: 50px;
   /*padding-top: 8%;*/
+}
+
+.no-expenses {
+  text-align: center;
+  font-size: 24px;
+}
+
+.total-container {
+  position: absolute;
+  margin-top: 42%;
+  margin-left: 5%;
 }

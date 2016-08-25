@@ -37,6 +37,7 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
+    this.parseCategoriesForChart = this.parseCategoriesForChart.bind(this);
   }
 
   componentWillMount(){
@@ -96,19 +97,9 @@ export default class ExpensesApp extends Component {
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
+              total={this.props.total}
+              parseCategoriesForChart={this.parseCategoriesForChart}
             />
-            <div className="total-container">
-              <Total total={this.props.total} />
-            </div>
-          </div>
-          <div className="rightSection-container">
-            <div className="karmometer-container">
-              <KarmoMeter />
-            </div>
-            <div className="chart-container">
-              <Chart data={this.parseCategoriesForChart()} />
-            </div>
-            <br />
          </div>
         </div>
       )
@@ -173,6 +164,6 @@ export default connect(
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
     toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter
+    setVisibilityFilter: setVisibilityFilter,
   }
 )(ExpensesApp)
