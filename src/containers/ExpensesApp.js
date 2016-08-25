@@ -102,7 +102,6 @@ export default class ExpensesApp extends Component {
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
-              total={this.props.total}
               parseCategoriesForChart={this.parseCategoriesForChart}
             />
          </div>
