@@ -1,0 +1,17 @@
+.apply-dates {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  top: -23px;
+  font: black;
+}
+
+.rdr-MonthAndYear-innerWrapper {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.datesbutton:hover {
+  color: black;
+  text-decoration: none;
+}

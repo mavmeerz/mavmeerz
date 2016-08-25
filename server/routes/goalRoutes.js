@@ -41,7 +41,7 @@ router.post('/updateGoals', (req ,res, next) => {
   if(goals){
     goalUtil.updateUserGoalsToDB(goals, userID)
     .then(success => goalUtil.getUserBudgetData({id: userID}))
-    .then(budgetData => res.status(201).send(budgetData))
+    .then(budgetData => res.status(201).send(budgetData));
   } else {
     res.send('request body needs expenses!!');
   }

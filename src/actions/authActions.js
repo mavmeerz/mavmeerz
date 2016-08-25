@@ -18,3 +18,9 @@ export function login (loginData) {
     payload: request
   }
 }
+
+export function logout() {
+  return {
+    type: LOGOUT
+  };
+}

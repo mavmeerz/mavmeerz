@@ -1,0 +1,50 @@
+/*.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: relative;
+}*/
+
+.dropzone {
+  border-style: dotted;
+  border-width: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  clear: left;
+}
+
+.upload-header {
+  text-align: center;
+}
+
+.upload-input-container {
+  text-align: center;
+  /*padding: 10px;*/
+  /*margin-top: 20px;*/
+  margin-bottom: 20px;
+  float: left;
+}
+
+.upload-input {
+  border-radius: 2px;
+  border-color: black;
+  padding: 5px;
+  width: 320px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 1.25em;
+}
+
+.upload-body {
+  margin: 60px 40px;
+}
+
+
+.bank {
+  margin: 0 auto;
+  text-align: left;
+  float: left;
+  padding: 5px;
+  font-size: 1.5em;
+}

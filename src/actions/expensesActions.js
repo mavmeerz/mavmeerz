@@ -3,14 +3,23 @@ import Axios from 'axios'
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
-export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
+export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
+export const UPLOAD_FAIL = 'UPLOAD_FAIL';
 export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
-export const FILTER_DATE = 'FILTER_DATE';
+export const INITIAL_FETCH = 'INITIAL_FETCH';
+export const SHOW_FILTERED_DATE = 'SHOW_FILTERED_DATE';
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+export const SHOW_ALL = 'SHOW_ALL';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
+export function toggleFetched(){
+  return {
+    type: INITIAL_FETCH
+  }
+}
 export function requestExpenses(){
   return {
     type: REQUEST_EXPENSES,
@@ -35,17 +44,25 @@ export function uploadRequest(){
 export function uploadSuccess(response){
   return {
     type: UPLOAD_SUCCESS,
-    isFetching: false,
+    // isFetching: false,
+    uploadSuccess: true,
     expenses: response
+  };
+}
+export function uploadFail() {
+  console.log('=====> got to uploadFAAILR');
+  return {
+    type: UPLOAD_FAIL,
+    isFetching: false
   };
 }
 export function parsingCSV() {
   return {
     type: PARSING_CSV,
-    isFetching: true
-    // expenses: response
+    // isFetching: true
   };
 }
+//-----------------------------
 
 //TOTAL ACTION CREATORS
 export function getTotal(total) {
@@ -64,6 +81,7 @@ function computeTotal(expensesArr){
   }
   return total;
 }
+//-----------------------
 
 //CATEGORIES ACTION CREATOR
 function addCategory(expenses){
@@ -82,17 +100,29 @@ function addAccount(expenses, account) {
   };
 }
 
-//FILTER DATE ACTION CREATOR
-export function filterDate(endDate, startDate) {
-  console.log('filterDate endDate: ', endDate)
-  console.log('filterDate startDate: ', startDate)
-  debugger;
+//VISIBILITY FILTER ACTION CREATORS
+export const setVisibilityFilter = (visibilityFilter, endDate, startDate) => {
   return {
-    type: FILTER_DATE,
+    type: SET_VISIBILITY_FILTER,
+    visibilityFilter: visibilityFilter,
     endDate: endDate,
     startDate: startDate
-  };
+  }
 }
+
+export const showAllExpenses = () => {
+  return {
+    type: SHOW_ALL
+  }
+}
+
+export const showFilteredExpenses = () => {
+  return {
+    type: SHOW_FILTERED_DATE
+  }
+}
+//--------------------------------------
+
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
@@ -123,18 +153,18 @@ export function uploadCSV(account, csv){
     .then(res =>  {
       dispatch(uploadSuccess(res.data))
       dispatch(getTotal(computeTotal(res.data)))
-    })
-    .catch(err => console.error(err))
+    });
   }
 }
 
 //
 export function updateCategories(expenses, category){
   return dispatch => {
-    return Axios.put('/v1/api/expenses/', {
-      token: window.localStorage.getItem('zenmoToken'),
-      expenses: expenses,
-      category: category
+    return Axios({
+      method: 'PUT',
+      url: '/v1/api/expenses',
+      headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
+      data:  {expenses: expenses, category: category}
     })
     .then(expenses => {
       dispatch(addCategory(expenses))
@@ -147,13 +177,4 @@ export function updateAccounts(expenses, account) {
   return dispatch => {
     dispatch(addAccount(expenses, account));
   };
-}
-
-export function updateDates(endDate, startDate) {
-  console.log('updateDates endDate:', endDate)
-  console.log('updateDates startDate: ', startDate)
-  // return dispatch => {
-  //   dispatch(filterDate(endDate, startDate))
-  // }
-  return filterDate(endDate, startDate)
 }

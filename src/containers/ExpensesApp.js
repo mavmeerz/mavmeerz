@@ -11,22 +11,28 @@ then passed down to all children presentational components.
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
+import * as _ from 'lodash';
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Chart from '../components/Chart.js'
 import Spin from '../components/Spin'
 import DatePicker from '../components/DatePicker'
-
+import KarmoMeter from './KarmoMeterApp'
 import '../css/expensesApp.css'
 
-import { fetchExpenses, updateCategories, updateAccounts, updateDates, receiveExpenses } from '../actions/expensesActions'
+import {
+  fetchExpenses,
+  updateCategories,
+  updateAccounts,
+  toggleFetched,
+  setVisibilityFilter
+} from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('this.props in constructor in ExpensesApp', this.props);
-    console.log('this.state in constructor in ExpensesApp', this.state);
+    console.log('::::::> ExpensesApp this.props', this.props);
+    console.log('::::::> ExpensesApp this.state', this.state);
 
     this.state = {
       total: 0,
@@ -34,46 +40,44 @@ export default class ExpensesApp extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchExpenses()
-    // this.props.receiveExpenses()
+    // var fetch = memoize(this.props.fetchExpenses)
+    // fetch()
+    if (!this.props.initialFetchOccurred) {
+      this.props.fetchExpenses()
+      this.props.toggleFetched()
+    }
   }
 
-  // componentDidMount() {
-  //   console.log('ExpensesApp componentWillReceiveProps: ', this.props.startDate)
-  //   this.props.startDate.setData(this.props.startDate);
-  // }
-
   parseCategoriesForChart() {
-    function filterByCategory(obj) {
-      if ('category' in obj && typeof(obj.category) === 'string' && obj.category !== null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    let arrByCategory = _.reject(this.props.expenses, expense => {
+                          return expense.category == 'Uncategorized';
+                        });
 
-    let dataSum = 0;
-    let arrByCategory = this.props.expenses.filter(filterByCategory);
-    let reduced = arrByCategory.reduce((p,c) => {
-      if (c.category != 'Other') {
-        p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
-        dataSum += c.amount;
-      }
-      return p;
-    }, {});
+    let categorizedTotal = _.sumBy(arrByCategory, expense => expense.amount);
 
-    let result = [];
-    for (let key in reduced) {
-      if (key != 'Other') {
-        result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
-      }
-    };
-    return result;
+    return  _.chain(arrByCategory)
+             .reduce((prev, expense) => {
+               if (prev[expense.category]) {
+                 prev[expense.category] += expense.amount;
+               } else {
+                 prev[expense.category]  = expense.amount;
+               }
+               return prev;
+             }, {})
+             .map((categoryTotal, category) => {
+               return {
+                 name: category,
+                 y: Math.round((categoryTotal / categorizedTotal) * 100)
+               };
+             })
+             .value();
   }
 
   render(){
-    var expenses = this.props.expenses;
-    if (!expenses.length > 0) {
+    const expenses      = this.props.expenses
+        , uploadSuccess = this.props.uploadSuccess;
+    console.log('uploadSuccess in ExpensesApp REnder: ', uploadSuccess);
+    if (this.props.isFetching) {
       return (
         <Spin/>
       )
@@ -82,22 +86,33 @@ export default class ExpensesApp extends Component {
         <div className="expenseApp-container">
           <div className="expense-list-container">
             <ExpenseList
+              uploadSuccess={uploadSuccess}
+              dates={
+                {
+                  startDate:this.props.startDate,
+                  endDate: this.props.endDate
+                }
+              }
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
-              total={this.props.total}
             />
           </div>
-
-          <div className="chart-container">
-            <Total
-                total={this.props.total}
-            />
-            <Chart
-              data={this.parseCategoriesForChart()}
-            />
+          <div className="rightSection-container">
+            <div className="chart-container">
+              <Total
+                  total={this.props.total}
+              />
+              <Chart
+                data={this.parseCategoriesForChart()}
+              />
+            </div>
+            <br />
+            <div className="karmometer-container">
+              <KarmoMeter
+              />
+            </div>
           </div>
-
         </div>
       )
     }
@@ -108,9 +123,20 @@ ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
-  fetchExpenses: PropTypes.func.isRequired,
-  allExpenses: PropTypes.array.isRequired,
-  receiveExpenses: PropTypes.func.isRequired
+  fetchExpenses: PropTypes.func.isRequired
+}
+
+function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
+  switch (visibilityFilter) {
+    case 'SHOW_ALL':
+      return expenses
+    case 'SHOW_FILTERED_DATE':
+      return expenses.filter((expense) => {
+        if (endDate && startDate) {
+          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
+        }
+      })
+  }
 }
 
 /*
@@ -120,19 +146,25 @@ props you want to pass to a child presentational component you are wrapping
   @return = object of transformed store state
 */
 function mapStateToProps(state){
-  console.log('ExpensesApp in mapStateToProps state is: ', state)
-  const { expenses, isFetching, total, startDate, endDate, allExpenses } = state.expensesReducer
-  console.log('Expenses in mapStateToProps in ExpensesApp: ', expenses );
-  console.log('ExpensesApp mapStateToProps startDate is: ', startDate);
-  console.log('ExpensesApp mapStateToProps endDate is: ', endDate);
+  const {
+    expenses,
+    uploadSuccess,
+    isFetching,
+    total,
+    startDate,
+    endDate,
+    initialFetchOccurred,
+    visibilityFilter
+  } = state.expensesReducer
 
   return {
-    expenses: expenses,
-    allExpenses: allExpenses,
+    expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
+    uploadSuccess: uploadSuccess,
     isFetching: isFetching,
     total: total,
     startDate: startDate,
     endDate: endDate,
+    initialFetchOccurred: initialFetchOccurred
   }
 }
 
@@ -143,7 +175,7 @@ export default connect(
     fetchExpenses: fetchExpenses,
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
-    updateDates: updateDates,
-    receiveExpenses: receiveExpenses
+    toggleFetched: toggleFetched,
+    setVisibilityFilter: setVisibilityFilter
   }
 )(ExpensesApp)

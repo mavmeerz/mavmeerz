@@ -88,8 +88,8 @@ const allCategories = [
     ]
   },
   {
-    'Other': [
-      'Other'
+    'Uncategorized': [
+      'Uncategorized'
     ]
   }
 ]

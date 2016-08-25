@@ -2,7 +2,6 @@ const express    = require('express')
     , app        = express()
     , port       = process.env.PORT || 8080
     , bodyParser = require('body-parser')
-    , expressCSV = require('express-csv-middleware');
 
 /// for development ///
 const morgan = require('morgan');
@@ -15,9 +14,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-// to allow for parsing CSV //
-app.use(expressCSV());
 
 /// looks for 'index.html' in '/../build' by default ///
 app.use(express.static(__dirname + '/../build'));

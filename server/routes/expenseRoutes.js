@@ -28,6 +28,7 @@ router.post('/', (req, res, next) => {
       // retrieve accountId (creating a new account if necessary)
       accountUtil.getAccountID(userID, req.body.account)
         .then((accountId) => {
+          console.log("req.body.expenses ============================> ",req.body.expenses);
           // check if proper request made
           if (req.body.expenses) {
             // add expenses to dB
@@ -38,17 +39,17 @@ router.post('/', (req, res, next) => {
             .then(expenses => res.status(201).send(expenses))
             .catch(err => console.log('Error in getExpensesFromDB:', err));
           } else {
-            res.send('request body needs expenses!');
+            res.status(400).send('Request body needs Expenses.');
           }
         });
       } else {
-      res.send('request body needs account!');
+      res.status(400).send('Request body needs Account Name.');
     }
 });
 
 // bulk update expenses
 router.put('/', (req, res) => {
-  let userID = tokenUtil.getUserIDFromToken(req.body.token);
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
   // utility function to update category for an array of
   // expenses in expenses DB
   if (req.body.expenses) {

@@ -9,9 +9,12 @@ exports.addGoal = (userGoal) => {
 };
 
 exports.updateGoal = (userGoal) => {
-  subCatController.getSubCategoryId(userGoal.subCat).then((subCatId) => {
-    new Goal().where({userId: userGoal.userId, subCatId: subCatId}).fetch().then((goalData) => {
-      new Goal({id: goalData.attributes.id}).save({amount: userGoal.amount, essential: userGoal.essential})
+  return new Promise((resolve, reject) => {
+    subCatController.getSubCategoryId(userGoal.subCat).then((subCatId) => {
+      new Goal().where({userId: userGoal.userId, subCatId: subCatId}).fetch().then((goalData) => {
+        return new Goal({id: goalData.attributes.id}).save({amount: userGoal.amount, essential: userGoal.essential})
+          .then(() => resolve());
+      });
     });
   });
 };

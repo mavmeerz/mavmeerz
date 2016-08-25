@@ -7,12 +7,19 @@ import { routerReducer } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   expensesReducer,
   budget: budgetReducer,
   isAuth: authReducer,
   routing: routerReducer,
   form: formReducer
-})
+});
 
-export default rootReducer
+const rootReducer = (state, action) => {
+  if (action.type == 'LOGOUT') {
+    state = undefined;
+  }
+  return appReducer(state, action);
+}
+
+export default rootReducer;
