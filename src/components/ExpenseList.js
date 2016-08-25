@@ -84,7 +84,7 @@ class ExpenseList extends Component {
               <TableHeaderColumn dataField='date' width='60' dataFormat={ dateFormatter }>Date</TableHeaderColumn>
               <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
               <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
-              <TableHeaderColumn dataField='amount' width='80' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+              <TableHeaderColumn dataField='amount' width='100' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
               <TableHeaderColumn dataField='account' width='100' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
 
             </BootstrapTable>
