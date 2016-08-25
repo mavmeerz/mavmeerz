@@ -11,10 +11,6 @@ import Total from './Total'
 import Chart from './Chart'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
-import Total from './Total'
-import Chart from './Chart'
-import ExpensesApp from '../containers/ExpensesApp.js'
-import { setVisibilityFilter } from '../actions/expensesActions'
 
 class ExpenseList extends Component {
   constructor(props) {
