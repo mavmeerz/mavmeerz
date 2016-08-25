@@ -6,6 +6,9 @@ import '../css/expensesApp.css'
 // import '../css/chart.css'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
+import KarmoMeter from '../containers/KarmoMeterApp'
+import Total from './Total.js'
+import Chart from './Chart.js'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
 import Total from './Total'
@@ -92,16 +95,15 @@ class ExpenseList extends Component {
           <div className="total-container">
             <Total total={this.props.total} />
           </div>
-          <div className="rightSection-container">
-            <div className="karmometer-container">
-              <KarmoMeter />
-            </div>
-            <div className="chart-container">
-              <Chart data={this.props.parseCategoriesForChart()} />
-            </div>
-            <br />
+        <div className="rightSection-container">
+          <div className="karmometer-container">
+            <KarmoMeter />
+          </div>
+          <div className="chart-container">
+            <Chart data={this.props.parseCategoriesForChart()} />
           </div>
         </div>
+      </div>
       )
 
     } else {
