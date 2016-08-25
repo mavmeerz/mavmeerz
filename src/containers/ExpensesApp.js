@@ -37,6 +37,8 @@ export default class ExpensesApp extends Component {
     this.state = {
       total: 0,
     }
+
+    this.parseCategoriesForChart = this.parseCategoriesForChart.bind(this);
   }
 
   componentWillMount(){
@@ -73,7 +75,7 @@ export default class ExpensesApp extends Component {
              .value();
   }
 
-  render(){
+  render() {
     const expenses      = this.props.expenses
         , uploadSuccess = this.props.uploadSuccess;
     console.log('uploadSuccess in ExpensesApp REnder: ', uploadSuccess);
@@ -93,26 +95,13 @@ export default class ExpensesApp extends Component {
                   endDate: this.props.endDate
                 }
               }
+              total={this.props.total}
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
+              parseCategoriesForChart={this.parseCategoriesForChart}
             />
-          </div>
-          <div className="rightSection-container">
-            <div className="chart-container">
-              <Total
-                  total={this.props.total}
-              />
-              <Chart
-                data={this.parseCategoriesForChart()}
-              />
-            </div>
-            <br />
-            <div className="karmometer-container">
-              <KarmoMeter
-              />
-            </div>
-          </div>
+         </div>
         </div>
       )
     }
@@ -176,6 +165,6 @@ export default connect(
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
     toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter
+    setVisibilityFilter: setVisibilityFilter,
   }
 )(ExpensesApp)
