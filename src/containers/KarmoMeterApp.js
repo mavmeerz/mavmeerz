@@ -14,15 +14,23 @@ export default class KarmoMeter extends Component {
   }
 
   render(){
-    return (
-      <div className = 'karmometer'>
-        <svg
-            id="fillgauge"
-            width="85%"
-            height="250">
-        </svg>
-      </div>
-    );
+    const showKarmoMeter = this.props.showKarmoMeter;
+    console.log('=====> showKarmoMeter in KarmoMeterApp render(): ', showKarmoMeter);
+    if (showKarmoMeter) {
+      return (
+        <div className = 'karmometer'>
+          <svg
+              id="fillgauge"
+              width="85%"
+              height="250">
+          </svg>
+        </div>
+      );
+    } else {
+      return (
+        <p>Sorry! More categories needed to show KarmoMeter</p>
+      );
+    }
   }
 
 }

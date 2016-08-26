@@ -94,7 +94,9 @@ class ExpenseList extends Component {
           </div>
           <div className="rightSection-container">
             <div className="karmometer-container">
-              <KarmoMeter />
+              <KarmoMeter
+                showKarmoMeter={this.props.showKarmoMeter}
+               />
             </div>
             <div className="chart-container">
               <Chart data={this.props.parseCategoriesForChart()} />
