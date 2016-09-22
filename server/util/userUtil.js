@@ -7,7 +7,6 @@ function addUserToDB(userInfo) {
       .then((user) => {
         resolve({
           id:        user.get('id'),
-          email:     user.get('email'),
           firstName: user.get('firstName'),
           lastName:  user.get('lastName')
         });
@@ -26,7 +25,6 @@ function attemptLogin(userInfo) {
         user.comparePassword(userInfo.password, (matches) => {
           matches ? resolve({
             id:        user.get('id'),
-            email:     user.get('email'),
             firstName: user.get('firstName'),
             lastName:  user.get('lastName')
           }) : reject('failure');

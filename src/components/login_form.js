@@ -1,10 +1,13 @@
 import React, {Component, PropTypes} from 'react'
-import {reduxForm} from 'redux-form'
-import '../css/signup.css'
-import {Link} from 'react-router'
+import { reduxForm} from 'redux-form'
+
+import { Link } from 'react-router'
 import { login } from '../actions/authActions'
 
-import Nav_Auth from './Nav_Auth'
+import * as util from '../util/style_functions'
+
+import '../css/login.css'
+
 
 class LoginForm extends Component {
   static contextTypes = {
@@ -13,6 +16,11 @@ class LoginForm extends Component {
 
   componentWillMount(){
     window.localStorage.removeItem('zenmoToken');
+  }
+
+  componentDidMount(){
+    document.body.style.background = "url(../assets/login.jpg) no-repeat center center fixed";
+    util.styleLogo("#FFFFFF")
   }
 
   onSubmit(loginData){
@@ -27,26 +35,32 @@ class LoginForm extends Component {
   render() {
     const {fields:{email, password}, handleSubmit} = this.props;
     return (
-      <div>
-      <Nav_Auth/>
-        <div className="form">
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <h1>Login</h1>
-              <div>
-                <input type="text" {...email} placeholder='name' className="biginput"/>
-                <div className="err-msg">{email.touched ? email.error : ''}</div>
-              </div>
-              <div>
-                <input type="password" {...password} placeholder='password' className="biginput"/>
-                <div className="err-msg">{password.touched ? password.error : ''}</div>
-              </div>
 
-              <button type="submit" className="button button-block">Submit</button>
+        <div className="login-page" id="particles-js">
+          <div id="login-form">
+            <p className="heading" id="title">LOGIN</p>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <div>
+                  <input type="text" {...email} placeholder='username' className="biginput"/>
+                  <div className="err-msg">{email.touched ? email.error : ''}</div>
+                </div>
+                <div className="login-pass">
+                  <input type="password" {...password} placeholder='password' className="biginput"/>
+                  <div className="err-msg">{password.touched ? password.error : ''}</div>
+                </div>
+              <div className="btn-group">
+                <button type="submit" className="submit">SUBMIT</button>
+              </div>
+            </form>
+          </div>
 
-          </form><br/>
-          <Link to="/signup" className="button button-block">SIGNUP</Link>
+          <div className="auth-redirect">
+            <p>Need to create an account?</p>
+            <Link to="/signup" className="redirect-link">SIGNUP</Link>
+          </div>
+
         </div>
-      </div>
+
     )
   }
 }

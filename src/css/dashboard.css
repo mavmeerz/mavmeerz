@@ -1,18 +1,37 @@
+.dash-links-container {
+  position: fixed;
+  width: 100%;
+  margin-top: 80px;
+  font-size: 17px;
+  z-index: 9999;
+}
+
 .dash-paths {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  float: left;
-  background-color: rgba(0,0,0,0);
-  /*margin: 25px 10px 10px 10px;*/
-  left: 20px;
-  font-size: 20px;
-  color: white;
-  padding-bottom: 6px;
+  display: inline-block;
+  z-index: 999;
+  /*padding: 0;*/
+  /*overflow: hidden;*/
+  /*background-color: rgba(0,0,0,0);*/
+  /*left: 20px;*/
+
 }
 
 .dash-link {
   float: left;
   margin: 0 30px 0 0;
+  background: #FFFFFF;
+  /*z-index: 8;*/
+}
+
+.data {
+  z-index: 9;
+}
+
+.expense-actions-list {
+  /*margin-top: 80px;*/
+	/*position: fixed;*/
+	/*z-index: 7;*/
+	/*background: #FFFFFF;*/
+	/*display: inline-block;*/
 }

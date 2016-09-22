@@ -1,21 +1,21 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import '../css/dropdown.css'
-import '../css/uploadcsv.css'
+import { Modal } from 'react-bootstrap';
+
 import Categories from './DropdownCategory'
-import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
-import { Modal } from 'react-bootstrap';
 import Upload from '../containers/UploadApp'
 import ExpensesApp from '../containers/ExpensesApp'
+
 import { setVisibilityFilter } from '../actions/expensesActions'
+
+import '../css/dropdown.css'
+import '../css/uploadcsv.css'
 
 export class DropDownApp extends Component {
   constructor(props) {
     super(props);
-
-    console.log('>>>>> Dropdown props are: ', props)
 
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
@@ -48,7 +48,6 @@ export class DropDownApp extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('got herrrrrr w props: ', props);
     if (props.uploadSuccess) {
       this.setState({showDropzone: false});
     }
@@ -56,22 +55,18 @@ export class DropDownApp extends Component {
 
   render() {
     return (
-      <div>
+      <div className='expense-actions-list'>
         <nav id="primary_nav_wrap">
-          <ul>
+          <ul className='expense-action-list'>
             <li><a href="#">Categorize</a>
               <Categories
                 categorize={this.props.categorize}
+                selected={this.props.selected}
               />
             </li>
-            <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-            <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
-            <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
-            <li><a href='#'>Select Account</a>
-              <Accounts
-                selectAccount={this.props.selectAccount}
-              />
-            </li>
+            <li className="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
+            <li className="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
+            <li className="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
           </ul>
         </nav>
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
@@ -93,7 +88,6 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('Dropwndown mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
 
   return {

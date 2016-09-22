@@ -2,6 +2,8 @@
 import * as _ from 'lodash';
 import moment from 'moment';
 
+import guestExpenses from '../assets/parsedGuestExpenses'
+
 import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
@@ -14,7 +16,8 @@ import {
   ADD_ACCOUNT,
   INITIAL_FETCH,
   SHOW_ALL,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  SELECT_EXPENSE
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {
@@ -26,7 +29,8 @@ const INITIAL_STATE = {
   filteredExpenses: [],
   allExpenses: [],
   initialFetchOccurred: false,
-  visibilityFilter: 'SHOW_ALL'
+  visibilityFilter: 'SHOW_ALL',
+  selected: []
 }
 
 export default function expenses(state=INITIAL_STATE, action){
@@ -53,8 +57,6 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case UPLOAD_SUCCESS:
-    console.log('action in UPLOAD_SUCCESS: ', action);
-    console.log('upload success in expenses reducer', state.expenses, action.expenses)
       return Object.assign({}, state, {
         // isFetching: action.isFetching,
         uploadSuccess: action.uploadSuccess,
@@ -112,21 +114,14 @@ export default function expenses(state=INITIAL_STATE, action){
         endDate: action.endDate
       });
       break;
-    // case SHOW_ALL:
-    //   // console.log('****> in reducer show_all', action.expenses, action.allExpenses)
-    //   return Object.assign({}, state, {
-    //     visibilityFilter: action.visibilityFilter,
-    //     startDate: null,
-    //     endDate: null
-    //   });
-    //   break;
-    // case SET_VISIBILITY_FILTER:
-    //   return Object.assign({}, state, {
-    //     visibilityFilter: action.visibilityFilter,
-    //     startDate: action.startDate,
-    //     endDate: action.endDate
-    //   });
-      // break;
+
+    case SELECT_EXPENSE:
+      const selectedRowId = action.id
+      const selected = state.selected
+      return Object.assign({}, state, {
+        selected: [...selected, ...selectedRowId]
+      });
+
     default:
       return state;
   }

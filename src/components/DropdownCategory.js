@@ -2,7 +2,7 @@ import React from 'react'
 import SubCategory from './DropdownSubCategory'
 import { categories, subCategories } from '../assets/categoriesData'
 
-const Categories = ({categorize}) => {
+const Categories = ({categorize, selected}) => {
 
   const subCategoryList = (mainCategory) => {
     return (

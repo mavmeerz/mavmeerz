@@ -26,11 +26,12 @@ router.post('/signup', (req, res) => {
     }
   });
 
-  if (userInfo.email !== undefined && userInfo.password !== undefined) {
+  if (userInfo.name !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
       .then((userData) => {
         goalUtil.initialGoalsTableFill(userData.id)
-        createToken(req, res, userData.id)
+        console.log('user data: ', userData);
+        createToken(req, res, userData.id, userInfo.name)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
       })
@@ -43,7 +44,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   let userInfo = req.body;
-  if (userInfo.email !== undefined && userInfo.password !== undefined) {
+  if (userInfo.name !== undefined && userInfo.password !== undefined) {
 
     util.attemptLogin(userInfo)
       .then((results) => {

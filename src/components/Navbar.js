@@ -20,15 +20,11 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav class='fixed-nav-bar'>
-        <ul className="nav">
-          <li className="nav-logo"><Link to='/' classname='nav-logo'>ZENMO</Link></li>
-          <li className="nav-item"><Link to='/login' classname='nav-logo'>About</Link></li>
-          <li className="nav-item"><Link to='/login' classname='nav-logo'>Dev Team</Link></li>
-          <li className="nav-item"><a href='#' onClick={this.onClick} classname='nav-logo'>Logout</a></li>
-        </ul>
-      </nav>
-    );
+      <div className='nav nav-dash'>
+        <a href='' className='item-dash nav-logo'>ZENMO</a>
+        <a href='' className='logout item-dash nav-item' onClick={this.onClick}>Logout</a>
+      </div>
+    )
   }
 }
 
