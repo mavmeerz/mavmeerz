@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Highcharts from 'highcharts'
 import ExpensesApp from '../containers/ExpensesApp'
+import '../css/chart.css'
 
 export class Chart extends React.Component {
 	constructor(props) {
@@ -12,8 +13,9 @@ export class Chart extends React.Component {
   componentDidMount() {
 	  this.chart = $(ReactDOM.findDOMNode(this.refs.chart)).highcharts({
             chart: {
-							size: 20,
-              type: 'pie'
+							// size: 40,
+              type: 'pie',
+							backgroundColor: 'transparent'
             },
             title: 'Expenses per Category',
             yAxis: {
@@ -34,8 +36,8 @@ export class Chart extends React.Component {
             series: [{
                 category: 'Category',
                 data: this.props.data,
-                size: '100%',
-                innerSize: '85%',
+                size: '75%',
+                innerSize: '75%',
                 showInLegend:true,
                 dataLabels: {
                     enabled: true

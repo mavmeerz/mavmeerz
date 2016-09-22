@@ -10,19 +10,27 @@ export default class KarmoMeter extends Component {
   }
 
   componentDidMount(){
-    d3.select("#fillgauge").call(liquidfillgauge, 55);
+    d3.select("#fillgauge").call(liquidfillgauge, 100);
   }
 
   render(){
-    return (
-      <div className = 'karmometer'>
-        <svg
-            id="fillgauge"
-            width="19%"
-            height="200">
-        </svg>
-      </div>
-    );
+    const showKarmoMeter = this.props.showKarmoMeter;
+    console.log('=====> showKarmoMeter in KarmoMeterApp render(): ', showKarmoMeter);
+    if (showKarmoMeter) {
+      return (
+        <div className = 'karmometer'>
+          <svg
+              id="fillgauge"
+              width="85%"
+              height="250">
+          </svg>
+        </div>
+      );
+    } else {
+      return (
+        <p>Sorry! More categories needed to show KarmoMeter</p>
+      );
+    }
   }
 
 }
@@ -37,7 +45,7 @@ var defaultConfig = {
         maxValue: 100, // The gauge maximum value.
 
         // Styles
-        circleThickness: 0.15, // The outer circle thickness as a percentage of it's radius.
+        circleThickness: 0.20, // The outer circle thickness as a percentage of it's radius.
         circleFillGap: 0.05, // The size of the gap between the outer circle and wave circle as a percentage of the outer circles radius.
         circleColor: "#FFE11A", // The color of the outer circle.
         backgroundColor: null, // The color of the background

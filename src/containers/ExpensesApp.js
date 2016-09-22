@@ -9,16 +9,16 @@ AsyncApp. All state changes are both dispatched and received by AsyncApp and
 then passed down to all children presentational components.
 */
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import * as _ from 'lodash';
-import ExpenseList from '../components/ExpenseList.js'
-import Total from '../components/Total.js'
-import Chart from '../components/Chart.js'
-import Spin from '../components/Spin'
-import DatePicker from '../components/DatePicker'
-import KarmoMeter from './KarmoMeterApp'
-import '../css/expensesApp.css'
+import ExpenseList from '../components/ExpenseList.js';
+import Total from '../components/Total.js';
+import Chart from '../components/Chart.js';
+import Spin from '../components/Spin';
+import DatePicker from '../components/DatePicker';
+import KarmoMeter from './KarmoMeterApp';
+import '../css/expensesApp.css';
 
 import {
   fetchExpenses,
@@ -26,26 +26,49 @@ import {
   updateAccounts,
   toggleFetched,
   setVisibilityFilter
-} from '../actions/expensesActions'
+} from '../actions/expensesActions';
 
 export default class ExpensesApp extends Component {
   constructor(props){
-    super(props)
+    super(props);
     console.log('::::::> ExpensesApp this.props', this.props);
     console.log('::::::> ExpensesApp this.state', this.state);
 
     this.state = {
-      total: 0,
+      total: 0
     }
+
+    this.parseCategoriesForChart   = this.parseCategoriesForChart.bind(this);
+    this.greaterThanFiveCategories = this.greaterThanFiveCategories.bind(this);
   }
 
   componentWillMount(){
     // var fetch = memoize(this.props.fetchExpenses)
     // fetch()
     if (!this.props.initialFetchOccurred) {
-      this.props.fetchExpenses()
-      this.props.toggleFetched()
+      this.props.fetchExpenses();
+      this.props.toggleFetched();
     }
+  }
+
+  // if there are greater than 5 categories created, then karmometer
+  // functionality will turn on
+
+  //TODO: retrieve categorized amount from the backend (faster)
+  greaterThanFiveCategories() {
+    const expenses       = this.props.expenses
+        , expensesLen    = expenses.length
+        , uniqueExpenses = {};
+    let count = 0;
+    for (let i = 0; i < expensesLen; i++) {
+      if (!uniqueExpenses[expenses[i].category]) {
+        uniqueExpenses[expenses[i].category] = true;
+        count++;
+        console.log('====> count herrrrr: ', count);
+        if (count > 5) return true;
+      }
+    }
+    return false;
   }
 
   parseCategoriesForChart() {
@@ -73,14 +96,14 @@ export default class ExpensesApp extends Component {
              .value();
   }
 
-  render(){
+  render() {
     const expenses      = this.props.expenses
         , uploadSuccess = this.props.uploadSuccess;
     console.log('uploadSuccess in ExpensesApp REnder: ', uploadSuccess);
     if (this.props.isFetching) {
       return (
         <Spin/>
-      )
+      );
     } else {
       return (
         <div className="expenseApp-container">
@@ -93,28 +116,16 @@ export default class ExpensesApp extends Component {
                   endDate: this.props.endDate
                 }
               }
+              total={this.props.total}
               expenses={expenses}
               updateCategories={this.props.updateCategories.bind(this)}
               updateAccounts={this.props.updateAccounts.bind(this)}
+              parseCategoriesForChart={this.parseCategoriesForChart}
+              showKarmoMeter={this.greaterThanFiveCategories()}
             />
-          </div>
-          <div className="rightSection-container">
-            <div className="chart-container">
-              <Total
-                  total={this.props.total}
-              />
-              <Chart
-                data={this.parseCategoriesForChart()}
-              />
-            </div>
-            <br />
-            <div className="karmometer-container">
-              <KarmoMeter
-              />
-            </div>
-          </div>
+         </div>
         </div>
-      )
+      );
     }
   }
 }
@@ -129,11 +140,11 @@ ExpensesApp.PropTypes = {
 function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
   switch (visibilityFilter) {
     case 'SHOW_ALL':
-      return expenses
+      return expenses;
     case 'SHOW_FILTERED_DATE':
       return expenses.filter((expense) => {
         if (endDate && startDate) {
-          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
+          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10);
         }
       })
   }
@@ -176,6 +187,6 @@ export default connect(
     updateCategories: updateCategories,
     updateAccounts: updateAccounts,
     toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter
+    setVisibilityFilter: setVisibilityFilter,
   }
 )(ExpensesApp)

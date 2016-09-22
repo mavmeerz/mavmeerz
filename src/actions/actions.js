@@ -10,8 +10,6 @@
     //1. Upload file (upload button clicked)
     //2. Add category to individual expense
 
-import fetch from 'isomorphic-fetch'
-
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const REQUEST_FAIL = 'REQUEST_FAIL';

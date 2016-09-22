@@ -1,8 +1,14 @@
 import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
+import '../css/expensesApp.css'
+// import '../css/karmometer.css'
+// import '../css/chart.css'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
+import KarmoMeter from '../containers/KarmoMeterApp'
+import Total from './Total'
+import Chart from './Chart'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
 
@@ -78,10 +84,23 @@ class ExpenseList extends Component {
               <TableHeaderColumn dataField='date' width='60' dataFormat={ dateFormatter }>Date</TableHeaderColumn>
               <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
               <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
-              <TableHeaderColumn dataField='amount' width='80' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+              <TableHeaderColumn dataField='amount' width='100' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
               <TableHeaderColumn dataField='account' width='100' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
 
             </BootstrapTable>
+            <div className="total-container">
+              <Total total={this.props.total} />
+            </div>
+          </div>
+          <div className="rightSection-container">
+            <div className="karmometer-container">
+              <KarmoMeter
+                showKarmoMeter={this.props.showKarmoMeter}
+               />
+            </div>
+            <div className="chart-container">
+              <Chart data={this.props.parseCategoriesForChart()} />
+            </div>
           </div>
         </div>
       )
@@ -89,8 +108,8 @@ class ExpenseList extends Component {
     } else {
       return (
         <div className='no-expenses'>
-          <p>You have no expenses yet! Upload files below to get started.</p><br/>
-          <Upload/><br/>
+          <p>Upload files below to get started.</p>
+          <Upload/>
           <p>Or add your expenses manually.</p>
         </div>
       )
