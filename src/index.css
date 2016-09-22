@@ -1,13 +1,23 @@
-html{
-  background: url(http://d27shkkua6xyjc.cloudfront.net/images/00.Frontpage/_672x378_crop_center-center_70/Frontpage_06_2400px.jpg?mtime=20141117152307 672w) no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+video#frontpage-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: 80px;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url(http://d27shkkua6xyjc.cloudfront.net/images/00.Frontpage/_672x378_crop_center-center_70/Frontpage_06_2400px.jpg?mtime=20141117152307 672w) no-repeat;
+  background-size: cover;
 }
