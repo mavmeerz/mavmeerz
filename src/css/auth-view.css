@@ -61,7 +61,7 @@
   font-size: 29px;
 }
 
-video#frontpage-video {
+/*video#frontpage-video {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -77,4 +77,4 @@ video#frontpage-video {
   transform: translateX(-50%) translateY(-50%);
   background: url(http://d27shkkua6xyjc.cloudfront.net/images/00.Frontpage/_672x378_crop_center-center_70/Frontpage_06_2400px.jpg?mtime=20141117152307 672w) no-repeat;
   background-size: cover;
-}
+}*/
