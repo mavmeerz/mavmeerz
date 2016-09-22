@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
       // retrieve accountId (creating a new account if necessary)
       accountUtil.getAccountID(userID, req.body.account)
         .then((accountId) => {
-          console.log("req.body.expenses ============================> ",req.body.expenses);
+          // console.log("req.body.expenses ============================> ",req.body.expenses);
           // check if proper request made
           if (req.body.expenses) {
             // add expenses to dB

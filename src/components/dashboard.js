@@ -1,15 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { Link, IndexLink } from 'react-router';
+
 import ReactAnimate from 'react-addons-css-transition-group';
+
 import ExpensesApp from '../containers/ExpensesApp.js';
 import BudgetApp from '../containers/BudgetApp';
+import Sidebar from '../containers/SidebarApp';
 import Navbar from './Navbar';
+import DashLinks from './DashLinks'
+
 import '../css/dashboard.css';
 
 import { logout } from '../actions/authActions';
-
-// import UploadApp from '../containers/UploadApp'
 
 class Dashboard extends Component {
 
@@ -24,23 +27,24 @@ class Dashboard extends Component {
       this.context.router.push('/transactions');
     }
   }
-  // componentDidMount(){
-  //   document.body.style.backgroundColor = 'white'
-  // }
 
   render() {
     return (
-      <div classNam="dash">
-        <div className="nav">
-          <Navbar logout={this.props.logout.bind(this)} />
+      <div className="dash">
+        <Navbar logout={this.props.logout.bind(this)} />
+
+        <DashLinks/>
+
+        <div className="data">
+          <div className="sidebar">
+            <Sidebar/>
+          </div>
+
+          <div className="tables-container">
+            {this.props.children}
+          </div>
         </div>
-        <div className="dash-nested-paths-nav">
-          <ul className="dash-paths">
-            <li className="dash-link"><Link to='/'>TRANSACTIONS</Link></li>
-            <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
-          </ul>
-        </div>
-        {this.props.children}
+
       </div>
     )
   }

@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Antic|Syncopate);
+
+.login-page, .signup-page {
+  font-family: 'Syncopate', sans-serif;
+  position: absolute;
+  text-align: center;
+  top: 25%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 33%;
+  font-size: 35px;
+}
+
+.heading {
+  display: block;
+  font-size: 60px;
+  margin-bottom: 40px;
+}
+
+#login-form {
+  border: 3px solid #000000;
+  /*padding: 30px 30px 30px 30px;*/
+  background: rgba(0,0,0,0);
+  color: black;
+}
+
+.login-pass {
+  margin-top: 10px;
+}
+
+.biginput {
+  background: rgba(0,0,0,0);
+  border: solid 3px #000000;
+  height: 40px;
+  width: 87%;
+}
+
+.err-msg {
+  font-size: 15px;
+  color: red;
+}
+
+.submit {
+  background: rgba(0,0,0,0);
+  border: solid 3px #000000;
+  margin: 40px;
+  padding: 15px;
+}
+
+.submit:hover {
+  color: #337AB7
+}
+
+.auth-redirect {
+  font-size: 20px;
+  margin: 40px;
+  color: black;
+}
+
+.redirect-link {
+  text-decoration: none;
+  border: solid 3px;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 20px;
+}
