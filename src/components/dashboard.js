@@ -24,9 +24,12 @@ class Dashboard extends Component {
       this.context.router.push('/transactions');
     }
   }
-  // componentDidMount(){
-  //   document.body.style.backgroundColor = 'white'
-  // }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.isAuth) {
+      this.context.router.push('/login');
+    }
+  }
 
   render() {
     return (
