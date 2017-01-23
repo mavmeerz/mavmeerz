@@ -108,9 +108,7 @@ class ExpenseList extends Component {
     } else {
       return (
         <div className='no-expenses'>
-          <p>Upload files below to get started.</p>
           <Upload/>
-          <p>Or add your expenses manually.</p>
         </div>
       )
     }

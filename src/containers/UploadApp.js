@@ -43,12 +43,12 @@ export default class UploadApp extends Component {
     const badUpload = this.state.badUpload;
     return (
       <div className="uploadcsv">
-      <div className="bank"> Bank Account: </div>
+        <p>Upload a file to get started.</p>
         <div className="upload-input-container">
           <input
             className="upload-input"
             type="text"
-            placeholder="Account Name"
+            placeholder="Bank Account"
             value={this.state.account}
             onChange={this.addAccountToState}
           />
@@ -56,9 +56,7 @@ export default class UploadApp extends Component {
         {badUpload ?
           <ErrorAlert> Your upload is poorly trained.</ErrorAlert>
         : null }
-        <Dropzone className="dropzone" onDrop={this.onDrop}>
-          <div> Try dropping some files here, or click to select files to upload.</div>
-        </Dropzone>
+        <Dropzone className="dropzone" onDrop={this.onDrop}>Drag or drop a file</Dropzone>
       </div>
     );
   }
