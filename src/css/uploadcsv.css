@@ -22,6 +22,7 @@ Link {
 
 .uploadcsv {
   /*background-color: #13232f;*/
+  text-align: center;
   background-color: #333;
   padding: 40px;
   max-width:500px;
@@ -144,6 +145,7 @@ textarea {
   border:1px solid #a0b3b0;
   color: #A6A6A6;
   border-radius:0;
+  text-align: center;
   transition:border-color .25s ease, box-shadow .25s ease;
   /*&:focus {
 		outline:0;
@@ -207,5 +209,6 @@ textarea {
 .err-msg {
   padding-left: 10%;
   margin: 0 auto;
+>>>>>>> style/upload
   color: #ffffff;
 }
