@@ -45,7 +45,7 @@ export default class UploadApp extends Component {
     const badUpload = this.state.badUpload;
     return (
       <div className="uploadcsv">
-      <p>Upload a file to get started.</p>
+        <p>Upload a file to get started.</p>
         <div className="upload-input-container">
           <input
             className="upload-input"
@@ -58,7 +58,7 @@ export default class UploadApp extends Component {
         {badUpload ?
           <ErrorAlert>Please put in a bank account name.</ErrorAlert>
         : null }
-        <Dropzone className="dropzone" onDrop={this.onDrop}>Drag or Drop a file here</Dropzone>
+        <Dropzone className="dropzone" onDrop={this.onDrop}>Drag or drop a file</Dropzone>
       </div>
     );
   }
