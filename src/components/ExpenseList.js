@@ -11,6 +11,9 @@ import Total from './Total'
 import Chart from './Chart'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
+import Total from './Total'
+import KarmoMeter from '../containers/KarmoMeterApp'
+import Chart from './Chart'
 
 class ExpenseList extends Component {
   constructor(props) {
@@ -101,6 +104,18 @@ class ExpenseList extends Component {
             <div className="chart-container">
               <Chart data={this.props.parseCategoriesForChart()} />
             </div>
+          </div>
+          <div className="total-container">
+            <Total total={this.props.total} />
+          </div>
+          <div className="rightSection-container">
+            <div className="karmometer-container">
+              <KarmoMeter />
+            </div>
+            <div className="chart-container">
+              <Chart data={this.props.parseCategoriesForChart()} />
+            </div>
+            <br />
           </div>
         </div>
       )
