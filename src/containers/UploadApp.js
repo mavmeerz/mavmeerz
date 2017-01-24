@@ -11,6 +11,8 @@ import Papa from '../util/papaparse.min.js'
 import { uploadCSV, parsingCSV } from '../actions/expensesActions.js'
 import { ErrorAlert } from 'pui-react-alerts';
 import Dropzone from 'react-dropzone';
+import {Tooltip} from 'pui-react-tooltip';
+import {OverlayTrigger} from 'pui-react-overlay-trigger';
 
 export default class UploadApp extends Component {
 
@@ -32,7 +34,7 @@ export default class UploadApp extends Component {
        .then(result => {
          that.props.uploadCSV(that.state.account, result)
            .catch(err => {
-             console.log('Your upload is badly formed', err);
+             console.log('Your upload is poorly trained.', err);
              that.setState({badUpload: true});
            });
        })
@@ -54,7 +56,7 @@ export default class UploadApp extends Component {
           />
         </div>
         {badUpload ?
-          <ErrorAlert> Your upload is poorly trained.</ErrorAlert>
+          <ErrorAlert>Please put in a bank account name.</ErrorAlert>
         : null }
         <Dropzone className="dropzone" onDrop={this.onDrop}>Drag or drop a file</Dropzone>
       </div>
@@ -95,3 +97,5 @@ export default connect(
     parsingCSV: parsingCSV
   }
 )(UploadApp)
+
+// <div className="bank"> Bank Account: </div>
