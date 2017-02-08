@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
-import KarmoMeter from '../containers/KarmoMeterApp'
+// import KarmoMeter from '../containers/KarmoMeterApp'
 
 import {Link} from 'react-router'
 
@@ -22,7 +22,7 @@ class AuthView extends Component {
     return (
       <div className="auth-view">
 
-        <KarmoMeter />
+
 
         <div className="auth-view-logo">
           <h1 className="logo">ZENMO</h1>
@@ -54,3 +54,5 @@ export default connect(
       isAuth: state.isAuth
     }
   })(AuthView)
+
+// <KarmoMeter />
