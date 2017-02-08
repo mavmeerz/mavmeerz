@@ -3,3 +3,4 @@ build
 server/test.csv
 server/.~lock.test.csv#
 .DS_Store
+.idea/
